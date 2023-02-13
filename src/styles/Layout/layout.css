@@ -1,0 +1,44 @@
+.layout-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.layout-title{
+    text-align: center;
+}
+
+.sort-btns{
+    display: flex;
+    align-self: flex-end;
+}
+
+.sort-btn{
+    background: none;
+    color: white;
+    border-radius: 14px;
+    border: none;
+    padding: 3px 15px;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.sort-active{
+    background-color: #7000FF;
+}
+
+.category-btns{
+    display: flex;
+    margin: 2rem 0;
+    gap: 36px;
+}
+
+.category-btn{
+    background-color: black;
+    color: white;
+    border-radius: 18px;
+    width: 156px;
+    height: 48px;
+    white-space: nowrap;
+    font-size: 14px;
+    font-weight: 500;
+}
