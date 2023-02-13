@@ -1,0 +1,34 @@
+.balance-card {
+  width: 163px;
+  height: 172px;
+  left: 48px;
+  top: 144px;
+
+  background: #000000;
+  border-radius: 35px;
+}
+
+ul {
+  list-style-type: none;
+}
+
+li {
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+li:hover {
+  border-right: 2px solid white;
+  background-color: hwb(0deg 100% 0% / 10%);
+}
+
+li > a {
+  font-size: 22px;
+  font-weight: 300;
+  color: white;
+  text-decoration: none;
+}
+
+li > a:hover {
+  color: white;
+}

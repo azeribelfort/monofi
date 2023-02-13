@@ -1,7 +1,7 @@
 import Head from 'next/head';
-import Image from 'next/image';
-import { Inter } from '@next/font/google';
-import styles from '@/styles/Home.module.css';
+import Header from '@/components/Header/Header';
+import Sidebar from '@/components/SideBar/Sidebar';
+import Layout from '@/components/Main/Layout';
 
 export default function Home() {
   return (
@@ -16,6 +16,17 @@ export default function Home() {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <Header />
+      <main className="container mw-100 mx-5">
+        <div className="row">
+          <div className="col-2">
+            <Sidebar />
+          </div>
+          <div className="col-9">
+            <Layout />
+          </div>
+        </div>
+      </main>
     </>
   );
 }
