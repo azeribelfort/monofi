@@ -1,4 +1,5 @@
-import Swiper from "./components/Swiper";
+import Slider from "./components/Slider";
+import Spotlight from "./components/Spotlight";
 
 const Layout = () => {
   return (
@@ -17,7 +18,8 @@ const Layout = () => {
         <button className="category-btn">Buy Outright</button>
         <button className="category-btn">Buy Share</button>
       </div>
-      <Swiper />
+      <Slider />
+      <Spotlight />
     </div>
   )
 };

@@ -1,6 +1,8 @@
 import '@/styles/globals.css';
 import '@/styles/sidebar/sidebar.css';
 import '@/styles/Layout/layout.css';
+import '@/styles/Layout/slider.css';
+import '@/styles/Layout/spotlight.css';
 import 'node_modules/bootstrap/dist/css/bootstrap.min.css';
 import type { AppProps } from 'next/app';
 
