@@ -1,0 +1,29 @@
+#security:
+#  jwtProperties:
+#    secret: ${APP_SECRET_KEY:dnRhc2tpZnl2dWdhcnZ0YXNraWZ5dnVnYXJ2dGFza2lmeXZ1Z2FydnRhc2tpZnl2dWdhcnZ0YXNraWZ5dnVnYXJ2dGFza2lmeXZ1Z2FydnRhc2tpZnl2dWdhcnZ0YXNraWZ5dnVnYXJ2dGFza2lmeXZ1Z2FydnRhc2tpZnl2dWdhcnZ0YXNraWZ5dnVnYXI=}
+#    token-validity-in-seconds: 86400
+#    token-validity-in-seconds-for-remember-me: 604800
+
+jwt:
+  token:
+    validity: 18000
+    prefix: Bearer
+  signing:
+    key: dnRhc2tpZnl2dWdhcnZ0YXNraWZ5dnVnYXJ2dGFza2lmeXZ1Z2FydnRhc2tpZnl2dWdhcnZ0YXNraWZ5dnVnYXJ2dGFza2lmeXZ1Z2FydnRhc2tpZnl2dWdhcnZ0YXNraWZ5dnVnYXJ2dGFza2lmeXZ1Z2FydnRhc2tpZnl2dWdhcnZ0YXNraWZ5dnVnYXI=
+  authorities:
+    key: roles
+  header:
+    string: Authorization
+
+
+cors:
+  allowed-origins: '*'
+  allowed-methods: '*'
+  allowed-headers: '*'
+  exposed-headers: 'Authorization,Link,X-Total-Count'
+  allow-credentials: true
+  max-age: 1800
+
+
+
+

@@ -1,0 +1,34 @@
+plugins {
+    id 'java'
+}
+
+group 'com.monofi'
+version '1.0'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation group: 'org.modelmapper', name: 'modelmapper', version: '2.1.1'
+    implementation group: 'io.jsonwebtoken', name: 'jjwt-api', version: '0.11.2'
+    runtimeOnly group: 'io.jsonwebtoken', name: 'jjwt-impl', version: '0.11.2'
+    runtimeOnly group: 'io.jsonwebtoken', name: 'jjwt-jackson', version: '0.11.2'
+    implementation group: 'org.hibernate', name: 'hibernate-validator', version: '6.0.15.Final'
+    implementation group: 'org.springframework.security', name: 'spring-security-config', version: '5.7.2'
+    compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.8'
+    annotationProcessor 'org.projectlombok:lombok:1.18.8'
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '2.5.5'
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '2.7.2'
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter', version: '2.7.3'
+    implementation group: 'org.springframework.boot', name: 'spring-boot-autoconfigure', version: '2.7.3'
+    implementation group: 'org.springframework', name: 'spring-context', version: '5.3.22'
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter', version: '2.7.3'
+    testImplementation group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: '2.7.3'
+    implementation group: 'org.springframework.security', name: 'spring-security-core', version: '5.7.2'
+    implementation group: 'org.hibernate', name: 'hibernate-core', version: '5.6.10.Final'
+    implementation group: 'org.springframework.security', name: 'spring-security-web', version: '5.7.2'
+    implementation 'mysql:mysql-connector-java:8.0.15'
+}

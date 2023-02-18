@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: Monofi
+  profiles:
+    active: ${ACTIVE_PROFILE:dev}
+    include:
+      - common
+      - database
+      - security

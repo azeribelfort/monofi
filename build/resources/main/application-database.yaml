@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: &connectionUrl jdbc:mysql://${DB_CONNECTION_IP:localhost}:${DB_CONNECTION_PORT:3306}/monofi?allowPublicKeyRetrieval=true&createDatabaseIfNotExist=true&useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&zeroDateTimeBehavior=convertToNull&useUnicode=true&characterEncoding=UTF-8
+    username: root
+    password:
+  jpa:
+    show-sql: false
+    generate-ddl: false
+    hibernate:
+      ddl-auto: update

@@ -1,0 +1,12 @@
+server:
+  port: ${API_SERVER_PORT:8082}
+  servlet:
+    application-display-name: monofi
+
+info:
+  app:
+    name: "${project.name}"
+    description: "${project.description}"
+    version: "${project.version}"
+    java:
+      version: "${java.version}"
