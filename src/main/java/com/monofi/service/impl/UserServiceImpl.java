@@ -1,25 +1,24 @@
 package com.monofi.service.impl;
 
-import com.monofi.auth.mapper.ModelMapperConfig;
 import com.monofi.dto.RegistrationDto;
 import com.monofi.exception.EmailAlreadyUsedException;
 import com.monofi.exception.NotFoundException;
 import com.monofi.exception.TokenNotSupportedException;
 import com.monofi.model.Authority;
+import com.monofi.model.SmsVerificationToken;
 import com.monofi.model.User;
-import com.monofi.model.VerificationToken;
+import com.monofi.model.EmailVerificationToken;
 import com.monofi.model.enums.UserAuthority;
 import com.monofi.repository.AuthorityJpaRepository;
+import com.monofi.repository.EmailVerificationTokenRepository;
 import com.monofi.repository.UserJpaRepository;
+import com.monofi.service.SmsVerificationTokenService;
 import com.monofi.service.UserService;
-import com.monofi.service.VerificationTokenService;
+import com.monofi.service.EmailVerificationTokenService;
 import lombok.RequiredArgsConstructor;
-import org.apache.tomcat.jni.Local;
-import org.hibernate.validator.internal.util.privilegedactions.LoadClass;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.ModelMap;
 
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
@@ -36,7 +35,9 @@ public class UserServiceImpl implements UserService {
     private final AuthorityJpaRepository authorityRepository;
     private final PasswordEncoder passwordEncoder;
     private final ModelMapper modelMapper;
-    private final VerificationTokenService verificationTokenService;
+    private final EmailVerificationTokenService emailVerificationTokenService;
+    private final SmsVerificationTokenService smsVerificationTokenService;
+    private final EmailVerificationTokenRepository emailVerificationTokenRepository;
 
     @Override
     public User findByUsername(String username) {
@@ -69,7 +70,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public VerificationToken register(RegistrationDto dto) {
+    public EmailVerificationToken register(RegistrationDto dto) {
         userRepository.findByUsername(dto.getUsername())
                 .ifPresent(user -> {
                     throw new EmailAlreadyUsedException(dto.getUsername());
@@ -79,28 +80,47 @@ public class UserServiceImpl implements UserService {
 
         //create and save verification token
         String token = UUID.randomUUID().toString();
-        VerificationToken verificationToken = VerificationToken.builder()
+        EmailVerificationToken emailVerificationToken = EmailVerificationToken.builder()
                 .token(token)
                 .createdAt(LocalDateTime.now())
                 .expiredAt(LocalDateTime.now().plusMinutes(15))
                 .user(user).build();
-        return verificationTokenService.save(verificationToken);
+        return emailVerificationTokenService.save(emailVerificationToken);
     }
 
 
     @Transactional
     @Override
-    public User confirm(String token){
-        VerificationToken verificationToken = verificationTokenService.findByToken(token);
-        if(verificationToken.getVerifiedAt()!=null){
+    public User verifyEmail(String token){
+        EmailVerificationToken emailVerificationToken = emailVerificationTokenService.findByToken(token);
+        if(emailVerificationToken.getVerifiedAt()!=null){
             throw new TokenNotSupportedException("Token already verified");
         }
-        if (verificationToken.getExpiredAt().isBefore(LocalDateTime.now())){
+        if (emailVerificationToken.getExpiredAt().isBefore(LocalDateTime.now())){
             throw new TokenNotSupportedException("Token expired");
         }
-        verificationToken.setVerifiedAt(LocalDateTime.now());
-        verificationToken.getUser().setEnabled(true);
-        return verificationToken.getUser();
+        emailVerificationToken.setVerifiedAt(LocalDateTime.now());
+        return emailVerificationToken.getUser();
+    }
+
+    @Transactional
+    @Override
+    public User verifyPhoneNumber(String token){
+        SmsVerificationToken smsVerificationToken = smsVerificationTokenService.findByNumber(new Integer(token));
+        if(smsVerificationToken.getVerifiedAt()!=null){
+            throw new TokenNotSupportedException("Phone number already verified");
+        }
+        if (smsVerificationToken.getExpiredAt().isBefore(LocalDateTime.now())){
+            throw new TokenNotSupportedException("Token expired");
+        }
+        smsVerificationToken.setVerifiedAt(LocalDateTime.now());
+        EmailVerificationToken emailVerificationToken = emailVerificationTokenRepository.findByUser(smsVerificationToken.getUser())
+                .orElseThrow(()->new NotFoundException("Can't find token"));
+        if (emailVerificationToken.getVerifiedAt()==null){
+            throw new IllegalStateException("Email not verified");
+        }
+        smsVerificationToken.getUser().setEnabled(true);
+        return smsVerificationToken.getUser();
     }
 
     private User createUserEntity(RegistrationDto dto) {

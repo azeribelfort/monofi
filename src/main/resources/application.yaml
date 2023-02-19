@@ -11,8 +11,12 @@ spring:
     host: smtp.gmail.com
     port: 587
     username:
-    password: 
+    password:
     properties.mail.smtp:
       auth: true
       starttls.enable: true
       ssl.trust: smtp.gmail.com
+twilio:
+  account_sid: AC95a99a41f363dc2ff6fe1131d83d5b08
+  auth_token: 105b69a114384d8e812ed7b915463c45
+  trial_number: +19148615996

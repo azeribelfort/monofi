@@ -6,13 +6,13 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "verification")
+@Table(name = "email_verification_token")
 @Getter
 @Setter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class VerificationToken {
+public class EmailVerificationToken {
 
     @Id
     @Column(name="id")

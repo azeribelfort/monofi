@@ -4,10 +4,13 @@ import com.monofi.auth.TokenProvider;
 import com.monofi.dto.AccessTokenDto;
 import com.monofi.dto.LoginDto;
 import com.monofi.dto.RegistrationDto;
-import com.monofi.exception.EmailAlreadyUsedException;
+import com.monofi.dto.SmsRequestDto;
+import com.monofi.model.SmsVerificationToken;
 import com.monofi.model.User;
-import com.monofi.model.VerificationToken;
+import com.monofi.model.EmailVerificationToken;
 import com.monofi.service.EmailSenderService;
+import com.monofi.service.SmsSenderService;
+import com.monofi.service.SmsVerificationTokenService;
 import com.monofi.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,7 +23,10 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.time.Duration;
+import java.time.LocalDateTime;
+import java.util.Random;
 
 @Slf4j
 @RestController
@@ -31,11 +37,13 @@ public class AuthController {
     private static final Duration ONE_DAY = Duration.ofDays(1);
     private static final Duration ONE_WEEK = Duration.ofDays(7);
 
+    private final SmsSenderService smsSenderService;
     private final EmailSenderService emailSenderService;
     private final TokenProvider jwtService;
     private final AuthenticationManagerBuilder authenticationManagerBuilder;
     private final AuthenticationManager authenticationManager;
     private final UserService userService;
+    private final SmsVerificationTokenService smsVerificationTokenService;
 
     @PostMapping("/login")
     public ResponseEntity<AccessTokenDto> authorize(@RequestBody LoginDto loginDto) {
@@ -52,20 +60,42 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<AccessTokenDto> register(@RequestBody RegistrationDto dto) throws Exception {
+    public ResponseEntity<AccessTokenDto> register(@Valid @RequestBody RegistrationDto dto) throws Exception {
         log.trace("Sign up request with email {}", dto.getUsername());
-        VerificationToken verificationToken = userService.register(dto);
+        EmailVerificationToken emailVerificationToken = userService.register(dto);
         emailSenderService
                 .sendEmail(dto.getUsername(),
                         "Verification email",
-                        "http://localhost:8082/auth/confirm?token="+verificationToken.getToken());
+                        "http://localhost:8082/auth/confirm?token="+ emailVerificationToken.getToken());
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @GetMapping("/confirm")
-    public ResponseEntity<User> confirm(@RequestParam("token") AccessTokenDto accessTokenDto){
-        userService.confirm(accessTokenDto.getToken());
-        return new ResponseEntity<>(HttpStatus.ACCEPTED);
+    @GetMapping("/verify/email")
+    public ResponseEntity<User> verifyEmail(@RequestParam("token") AccessTokenDto accessTokenDto){
+        User user = userService.verifyEmail(accessTokenDto.getToken());
+        return new ResponseEntity<>(user,HttpStatus.ACCEPTED);
+    }
+
+    @GetMapping("/verify/number")
+    public ResponseEntity<User> verifyPhoneNumber(@RequestParam("token") AccessTokenDto accessTokenDto){
+        User user = userService.verifyPhoneNumber(accessTokenDto.getToken());
+        return new ResponseEntity<>(user,HttpStatus.ACCEPTED);
+    }
+
+    @PostMapping("/sms")
+    public ResponseEntity<Void> sendVerificationSms(@Valid @RequestBody SmsRequestDto smsRequestDto){
+        Random random = new Random();
+        Integer number = random.nextInt(998999)+1000;
+        SmsVerificationToken smsVerificationToken = smsVerificationTokenService.save(
+                SmsVerificationToken.builder()
+                .createdAt(LocalDateTime.now())
+                .expiredAt(LocalDateTime.now().plusMinutes(15))
+                .phoneNumber(smsRequestDto.getPhoneNumber())
+                .number(number)
+                .user(userService.findById(new Long(smsRequestDto.getUserId())))
+                .build());
+        smsSenderService.sendSms(smsVerificationToken);
+        return new ResponseEntity(HttpStatus.OK);
     }
 
     @GetMapping("/user")

@@ -32,4 +32,5 @@ dependencies {
     implementation group: 'org.springframework.security', name: 'spring-security-web', version: '5.7.2'
     implementation 'mysql:mysql-connector-java:8.0.15'
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-mail', version: '1.2.0.RELEASE'
+    implementation group: 'com.twilio.sdk', name: 'twilio', version: '9.2.2'
 }

@@ -8,7 +8,9 @@ import javax.validation.constraints.NotBlank;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class AccessTokenDto {
+public class SmsRequestDto {
     @NotBlank
-    private String token;
+    private String phoneNumber;
+    @NotBlank
+    private String userId;
 }
