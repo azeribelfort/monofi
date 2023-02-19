@@ -31,4 +31,5 @@ dependencies {
     implementation group: 'org.hibernate', name: 'hibernate-core', version: '5.6.10.Final'
     implementation group: 'org.springframework.security', name: 'spring-security-web', version: '5.7.2'
     implementation 'mysql:mysql-connector-java:8.0.15'
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-mail', version: '1.2.0.RELEASE'
 }

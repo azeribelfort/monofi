@@ -6,6 +6,8 @@ import com.monofi.dto.LoginDto;
 import com.monofi.dto.RegistrationDto;
 import com.monofi.exception.EmailAlreadyUsedException;
 import com.monofi.model.User;
+import com.monofi.model.VerificationToken;
+import com.monofi.service.EmailSenderService;
 import com.monofi.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -29,6 +31,7 @@ public class AuthController {
     private static final Duration ONE_DAY = Duration.ofDays(1);
     private static final Duration ONE_WEEK = Duration.ofDays(7);
 
+    private final EmailSenderService emailSenderService;
     private final TokenProvider jwtService;
     private final AuthenticationManagerBuilder authenticationManagerBuilder;
     private final AuthenticationManager authenticationManager;
@@ -49,34 +52,26 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<AccessTokenDto> register(@RequestBody RegistrationDto dto) {
+    public ResponseEntity<AccessTokenDto> register(@RequestBody RegistrationDto dto) throws Exception {
         log.trace("Sign up request with email {}", dto.getUsername());
-        try {
-            userService.register(dto);
-        }
-        catch (EmailAlreadyUsedException e){
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-        final Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                        dto.getUsername(),
-                        dto.getPassword()
-                )
-        );
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-        final String token = jwtService.generateToken(authentication);
-        return new ResponseEntity<>(new AccessTokenDto(token), HttpStatus.OK);
+        VerificationToken verificationToken = userService.register(dto);
+        emailSenderService
+                .sendEmail(dto.getUsername(),
+                        "Verification email",
+                        "http://localhost:8082/auth/confirm?token="+verificationToken.getToken());
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    @GetMapping("/confirm")
+    public ResponseEntity<User> confirm(@RequestParam("token") AccessTokenDto accessTokenDto){
+        userService.confirm(accessTokenDto.getToken());
+        return new ResponseEntity<>(HttpStatus.ACCEPTED);
     }
 
     @GetMapping("/user")
     public ResponseEntity<User> getAuthenticatedUser(){
-        try {
-            String username = SecurityContextHolder.getContext().getAuthentication().getName();
-            User user = userService.findByUsername(username);
-            return new ResponseEntity<>(user,HttpStatus.OK);
-        }
-        catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        User user = userService.findByUsername(username);
+        return new ResponseEntity<>(user,HttpStatus.OK);
     }
 }

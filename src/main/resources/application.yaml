@@ -7,3 +7,12 @@ spring:
       - common
       - database
       - security
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username:
+    password: 
+    properties.mail.smtp:
+      auth: true
+      starttls.enable: true
+      ssl.trust: smtp.gmail.com

@@ -2,6 +2,7 @@ package com.monofi.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
+import org.hibernate.annotations.Fetch;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
@@ -14,6 +15,7 @@ import java.util.Set;
 @Getter
 @Setter
 @NoArgsConstructor
+@ToString
 public class User implements UserDetails {
 
     @Id
@@ -46,7 +48,7 @@ public class User implements UserDetails {
     private boolean enabled;
 
     @JsonIgnore
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "user_authority",
             joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},

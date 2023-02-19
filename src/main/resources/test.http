@@ -8,8 +8,9 @@
 
 GET http://localhost:8082/user/authorities
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtdXJhZGFiYmFzemFkZTZAZ21haWwuY29tIiwicm9sZXMiOiJST0xFX1VTRVIiLCJpYXQiOjE2NzY4MDIwNjAsImV4cCI6MTY3NjgyMDA2MH0.JEBAPVz1aXANNk0XAcJsE0c5f7A5DkW9Bq17ZRijobs
 
 {
-  "username": "muradabbaszade@gmail.com5"
+"username": "muradabbaszade6@gmail.com"
 }
 ###

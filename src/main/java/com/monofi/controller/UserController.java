@@ -21,24 +21,14 @@ public class UserController {
 
     @GetMapping("/authorities")
     public ResponseEntity<Set<Authority>> getUserAuthorities(@RequestBody UserRequestDto userRequestDto){
-        try {
-            User user = userService.findByUsername(userRequestDto.getUsername());
-            Set<Authority> authorities = user.getAuthorities();
-            return new ResponseEntity<>(authorities, HttpStatus.OK);
-        }
-        catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+        User user = userService.findByUsername(userRequestDto.getUsername());
+        Set<Authority> authorities = user.getAuthorities();
+        return new ResponseEntity<>(authorities, HttpStatus.OK);
     }
 
     @GetMapping("/credentials")
     public ResponseEntity<User> getUserByUsername(@RequestBody UserRequestDto userRequestDto){
-        try {
-            User user = userService.findByUsername(userRequestDto.getUsername());
-            return new ResponseEntity<>(user, HttpStatus.OK);
-        }
-        catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+        User user = userService.findByUsername(userRequestDto.getUsername());
+        return new ResponseEntity<>(user, HttpStatus.OK);
     }
 }

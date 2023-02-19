@@ -10,6 +10,6 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class ErrorResponseDto {
     private String message;
-    private HttpStatus httpStatus;
+    private HttpStatus status;
     private LocalDateTime dateTime;
 }

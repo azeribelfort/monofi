@@ -4,21 +4,29 @@ import com.monofi.auth.mapper.ModelMapperConfig;
 import com.monofi.dto.RegistrationDto;
 import com.monofi.exception.EmailAlreadyUsedException;
 import com.monofi.exception.NotFoundException;
+import com.monofi.exception.TokenNotSupportedException;
 import com.monofi.model.Authority;
 import com.monofi.model.User;
+import com.monofi.model.VerificationToken;
+import com.monofi.model.enums.UserAuthority;
 import com.monofi.repository.AuthorityJpaRepository;
 import com.monofi.repository.UserJpaRepository;
 import com.monofi.service.UserService;
+import com.monofi.service.VerificationTokenService;
 import lombok.RequiredArgsConstructor;
+import org.apache.tomcat.jni.Local;
+import org.hibernate.validator.internal.util.privilegedactions.LoadClass;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.ModelMap;
 
 import javax.transaction.Transactional;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -28,6 +36,7 @@ public class UserServiceImpl implements UserService {
     private final AuthorityJpaRepository authorityRepository;
     private final PasswordEncoder passwordEncoder;
     private final ModelMapper modelMapper;
+    private final VerificationTokenService verificationTokenService;
 
     @Override
     public User findByUsername(String username) {
@@ -60,27 +69,51 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public void register(RegistrationDto dto) {
+    public VerificationToken register(RegistrationDto dto) {
         userRepository.findByUsername(dto.getUsername())
                 .ifPresent(user -> {
                     throw new EmailAlreadyUsedException(dto.getUsername());
                 });
         User user = createUserEntity(dto);
         userRepository.save(user);
+
+        //create and save verification token
+        String token = UUID.randomUUID().toString();
+        VerificationToken verificationToken = VerificationToken.builder()
+                .token(token)
+                .createdAt(LocalDateTime.now())
+                .expiredAt(LocalDateTime.now().plusMinutes(15))
+                .user(user).build();
+        return verificationTokenService.save(verificationToken);
     }
 
 
+    @Transactional
+    @Override
+    public User confirm(String token){
+        VerificationToken verificationToken = verificationTokenService.findByToken(token);
+        if(verificationToken.getVerifiedAt()!=null){
+            throw new TokenNotSupportedException("Token already verified");
+        }
+        if (verificationToken.getExpiredAt().isBefore(LocalDateTime.now())){
+            throw new TokenNotSupportedException("Token expired");
+        }
+        verificationToken.setVerifiedAt(LocalDateTime.now());
+        verificationToken.getUser().setEnabled(true);
+        return verificationToken.getUser();
+    }
+
     private User createUserEntity(RegistrationDto dto) {
         User user = modelMapper.map(dto, User.class);
-        Authority authority = Authority.builder()
-                .authority("ROLE_USER")
-                .build();
+        Authority authority = authorityRepository.findByAuthority(UserAuthority.ROLE_USER.toString()).orElse(
+                Authority.builder().authority(UserAuthority.ROLE_USER.toString()).build()
+        );
         authorityRepository.save(authority);
         Set<Authority> userAuthority = new HashSet<>();
         userAuthority.add(authority);
         user.setAuthorities(userAuthority);
         user.setPassword(passwordEncoder.encode(dto.getPassword()));
-        user.setEnabled(true);
+        user.setEnabled(false);
         user.setAccountNonExpired(true);
         user.setAccountNonLocked(true);
         user.setCredentialsNonExpired(true);

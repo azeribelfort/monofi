@@ -6,10 +6,7 @@
 # * 'ptr' and 'ptrp' create a POST request with a simple or parameter-like body;
 # * 'mptr' and 'fptr' create a POST request to submit a form with a text or file field (multipart/form-data);
 
-GET http://localhost:8082/user/authorities
+GET http://localhost:8082/auth/user
 Content-Type: application/json
-
-{
-  "username": "muradabbaszade@gmail.com"
-}
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtdXJhZGFiYmFzemFkZTZAZ21haWwuY29tIiwicm9sZXMiOiJST0xFX0FETUlOIiwiaWF0IjoxNjc2ODAxNjk0LCJleHAiOjE2NzY4MTk2OTR9.liVZHZGOsUN1svXOwtnwRkArlAYUfH7TFDQYbHMplI4
 ###

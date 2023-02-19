@@ -2,6 +2,7 @@ package com.monofi.service;
 
 import com.monofi.dto.RegistrationDto;
 import com.monofi.model.User;
+import com.monofi.model.VerificationToken;
 
 import java.util.List;
 
@@ -16,5 +17,7 @@ public interface UserService {
 
     void deleteById(Long id);
 
-    void register(RegistrationDto dto);
+    VerificationToken register(RegistrationDto dto);
+
+    User confirm(String token);
 }
