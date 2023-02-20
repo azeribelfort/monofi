@@ -1,0 +1,13 @@
+
+.CompanySlider {
+    position: relative;
+    width: 100%;
+    min-height: 186px;
+    background-color: #ccc0db;
+    .swiper-slide{
+        height: 186px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}

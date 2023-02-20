@@ -1,0 +1,64 @@
+$button : rgba(0, 0, 0, 0.5); 
+.Navbar {
+    font-family: Roboto;    
+    color: white;
+    
+    .container.forNavbar {
+        height: 200px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        
+    }
+    .light{
+        position: absolute;
+        width: 628px;
+        height: 628px;
+        left: calc(50% - 628px/2 + 162px);
+        top: -458px;
+        background: rgba(163, 163, 250, 0.5);
+        opacity: 0.5;
+        filter: blur(162px);
+    }
+    .logo {
+        font-size: 44px;
+        z-index: 3;
+       
+        span {
+            
+            font-weight: 900;
+        }
+    }
+    .Links {
+        
+        font-family: Archivo;
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        gap: 50px;
+        z-index: 8;
+        a{
+            cursor: pointer;
+        }
+        button {
+            transition: 0.2s;
+            z-index: 9;
+            background-color: $button ;
+            max-width: 188.08px;
+            padding: 0 30px;
+            height: 48px;
+            border-radius: 18px;
+            border: none;
+            color:  white;
+            font-size: 18px; 
+            font-weight: 700;
+            cursor: pointer;
+            &:hover{
+                background-color:rgba(0, 0, 0, 0.615) ;
+            }
+        }
+        
+    
+
+    }
+}

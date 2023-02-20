@@ -1,0 +1,70 @@
+.Testimonials {
+    .forTesti{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+    }
+    .HeaderText {
+        margin-top: 200px;
+        display: flex   ;
+        flex-direction: column;
+        .sub {
+            display: flex;
+            justify-content: center;
+            font-family: Outfit;
+            font-style: normal;
+            font-weight: 600;
+            font-size: 20px;
+            line-height: 28px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #9090DC;
+        }
+        .head {
+            width: 676px;
+            font-family: Archivo;
+            font-style: normal;
+            font-weight: 900;
+            font-size: 57px;
+            line-height: 101%;
+            /* or 58px */
+            
+            text-align: center;
+            text-transform: capitalize;
+        
+            color: #FFFFFF;
+        }
+
+    }
+    .usersCards {
+        position: relative;
+        max-width:  942px;
+        height: 477.5px;;
+        width: 80%;
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+       
+        .Rocket {
+            position: absolute;
+            right: -20%;
+            top: -250px;
+           img{
+            width: 100%;
+           }
+            
+        }
+        .lightUsers {
+            position: absolute;
+            width: 961px;
+            height: 466px;
+            background: rgba(219, 0, 255, 0.5);
+            filter: blur(162px);
+        }
+        
+        
+    }
+}

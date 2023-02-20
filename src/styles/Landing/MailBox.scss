@@ -1,0 +1,118 @@
+.MailBox{
+    margin-top: 200px;
+    .mailBox {
+        position: relative;
+        height: 430px;
+        width: 90%;
+        max-width: 1000px;
+        background: #7D7DDC;
+        border-radius: 34px;
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        align-items: center;
+        padding: 45px;
+        .sub {
+                width: 485px;
+                height: 28px;
+                /* Subheading */
+            
+                font-family: Outfit;
+                font-style: normal;
+                font-weight: 600;
+                font-size: 20px;
+                line-height: 28px;
+                /* identical to box height, or 138% */
+                letter-spacing: 0.1em;
+                text-transform: uppercase;
+            
+                color: #000000;
+
+        }
+        
+        .head {
+            font-family: Outfit-bold;
+            font-style: normal;
+            font-weight: 900;
+            font-size: 57px;
+            line-height: 101%;
+            /* or 58px */
+        
+            text-align: center;
+            text-transform: capitalize;
+        
+            color: #FFFFFF;
+
+        }
+        .emailContainer 
+        {
+                max-width: 714px;
+                width: 80%;
+                height: 68px;
+                background: #000000;
+                border-radius: 18px;
+                font-family: Archivo; 
+                display: flex;
+                align-items: center;
+                 justify-content: center;
+                letter-spacing: 0.2px;
+               
+                input {
+                    font-weight: 200;
+                    font-size: 34px;
+                    color: #CFD6DD;
+                    background-color: #000000;
+                    outline: none;
+                    border: none;
+                    text-align: center;
+
+                }
+        }
+        .submit {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            
+        
+            max-width: 370px;
+            height: 80px;
+        
+            background: #000000;
+            border-radius: 18px;        
+            font-family: Roboto;
+       
+            font-weight: 600;
+            font-size: 20px;
+            line-height: 28px;
+            /* identical to box height, or 138% */
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #FFFFFF;
+            cursor: pointer;
+            transition: 0.2s;
+            border: none;
+            padding: 0 3% 0 3%;
+        }
+                .submit:hover
+                {
+                    background-color: rgb(13, 13, 13);
+                }
+        .image {
+            position: absolute;
+            right: -160px;
+            top: -160px;
+            // img{
+            //     width: 100%;
+            // }
+            
+        }
+
+
+}
+
+}
+.forMbox {
+    display: flex;
+    justify-content: center;
+}
