@@ -7,13 +7,15 @@ import Apple from '../../../assets/companies/apple.png';
 import Birbank from '../../../assets/companies/birbank.png';
 import Dersevi from '../../../assets/companies/dersevi.png';
 import Yelobank from '../../../assets/companies/yelobank.png';
+import EmptyStar from '../../../assets/main/star-empty.png';
+import FavStar from '../../../assets/main/star-yellow.png';
 
 const Slider = () => {
   return (
     <div className="company-slider-container">
       <Swiper
-        slidesPerView={3}
-        spaceBetween={2}
+        slidesPerView={'auto'}
+        spaceBetween={20}
         navigation={true}
         grabCursor={true}
         modules={[Navigation]}
@@ -21,6 +23,9 @@ const Slider = () => {
       >
         <SwiperSlide className='company-slide'>
           <div className='company-slide-card'>
+            <div className='star fav'>
+              <Image src={FavStar} alt='star' />
+            </div>
             <Image src={Apple} alt='company' className='company-img'/>
             <div className='info-container'>
               <div className='info-top'>
@@ -42,6 +47,9 @@ const Slider = () => {
         </SwiperSlide>
         <SwiperSlide className='company-slide'>
           <div className='company-slide-card'>
+            <div className='star fav'>
+              <Image src={EmptyStar} alt='star' />
+            </div>
             <Image src={Birbank} alt='company' className='company-img' />
             <div className='info-container'>
               <div className='info-top'>
@@ -53,7 +61,7 @@ const Slider = () => {
                   <span className='secondary-span'>Current Bid</span>
                   <span className='primary-span'>$2.1 mil.</span>
                 </div>
-                <div className='info-bottom-div'>
+                <div className='info-bottom-div right'>
                   <span className='secondary-span'>Ending In</span>
                   <span className='primary-span'>3d 12h 44m 12s</span>
                 </div>
@@ -63,6 +71,9 @@ const Slider = () => {
         </SwiperSlide>
         <SwiperSlide className='company-slide'>
           <div className='company-slide-card'>
+            <div className='star fav'>
+              <Image src={EmptyStar} alt='star' />
+            </div>
             <Image src={Dersevi} alt='company' className='company-img' />
             <div className='info-container'>
               <div className='info-top'>
@@ -74,7 +85,7 @@ const Slider = () => {
                   <span className='secondary-span'>Current Bid</span>
                   <span className='primary-span'>$4 bn.</span>
                 </div>
-                <div className='info-bottom-div'>
+                <div className='info-bottom-div right'>
                   <span className='secondary-span'>Ending In</span>
                   <span className='primary-span'>1d 19h 30m 4s</span>
                 </div>
@@ -84,6 +95,9 @@ const Slider = () => {
         </SwiperSlide>
         <SwiperSlide className='company-slide'>
           <div className='company-slide-card'>
+            <div className='star fav'>
+              <Image src={EmptyStar} alt='star' />
+            </div>
             <Image src={Yelobank} alt='company' className='company-img' />
             <div className='info-container'>
               <div className='info-top'>
@@ -95,7 +109,7 @@ const Slider = () => {
                   <span className='secondary-span'>Current Bid</span>
                   <span className='primary-span'>$4 bn.</span>
                 </div>
-                <div className='info-bottom-div'>
+                <div className='info-bottom-div right'>
                   <span className='secondary-span'>Ending In</span>
                   <span className='primary-span'>5d 18h 12m 3s</span>
                 </div>
