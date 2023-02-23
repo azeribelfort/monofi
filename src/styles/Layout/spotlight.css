@@ -1,0 +1,77 @@
+.spotlight-container{
+    
+}
+
+.spotlight-title{
+    font-size: 26px;
+    font-weight: 700;
+}
+
+.spotlight-table{
+    margin: 2rem 0;
+    border: 2px solid white;
+    border-radius: 18px;
+}
+
+.spotlight-table table{
+    border-collapse: separate;
+    border-radius: 18px;
+    border-spacing: 0;
+    background-color: black;
+    width: 100%;
+}
+
+.spotlight-table table thead, tbody{
+    text-align: center;
+}
+
+.spotlight-table table thead {
+    border: 2px solid white;
+    border-radius: 18px;
+}
+
+.spotlight-table table thead tr th:first-child {
+    padding-left: 2rem;
+    text-align: start;
+}
+
+.spotlight-table table tbody tr td:first-child{
+    padding-left: 3rem;
+    text-align: start;
+}
+
+.spotlight-table table thead tr th, td{
+    padding: 1rem 0;
+}
+
+.spotlight-table table tbody tr td {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.spotlight-table table tbody tr {
+    cursor: pointer;
+}
+
+.spotlight-table table tbody tr:hover {
+    background-color: rgba(217, 217, 217, 0.2);
+    border: 2px solid white;
+}
+
+.name-td{
+    font-size: 16px;
+    font-weight: 700;
+    margin-left: 30px;
+}
+
+.change{
+    color: #2AD97B;
+}
+
+.color-up{
+    color: #2AD97B;
+}
+
+.color-down {
+    color: #FF0000;
+}
