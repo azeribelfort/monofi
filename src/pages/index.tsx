@@ -2,7 +2,7 @@ import Head from 'next/head';
 import Header from '@/components/Header/Header';
 import Sidebar from '@/components/SideBar/Sidebar';
 import Layout from '@/components/Main/Layout';
-
+import Dashboard from '../components/Dashboard/Dashboard'
 export default function Home() {
   return (
     <>
@@ -23,7 +23,9 @@ export default function Home() {
             <Sidebar />
           </div>
           <div className="col-9">
-            <Layout />
+            {/* <Layout /> */}
+            <Dashboard/>
+
           </div>
         </div>
       </main>

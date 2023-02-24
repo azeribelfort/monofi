@@ -5,7 +5,9 @@ import '@/styles/Layout/slider.css';
 import '@/styles/Layout/spotlight.css';
 import 'node_modules/bootstrap/dist/css/bootstrap.min.css';
 import '../styles/Landing/Landing.scss'
-import Landing  from '@/components/Landing/Landing' 
+import '../styles/dashboard/All.scss'
+import '../styles/layoutForAuthorization/Signin.scss'
+import '../styles/layoutForAuthorization/authorization.scss'
 import type { AppProps } from 'next/app';
 
 export default function App({ Component, pageProps }: AppProps) {

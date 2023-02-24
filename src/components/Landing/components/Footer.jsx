@@ -20,7 +20,7 @@ const Footer = () =>
                                     data.foots.map((foot,index)=>(
                                         <>
                                             <a  to={`${foot.link}`}>
-                                                <li className='fli' key={index}>{foot.title}</li>
+                                                <li key={index}>{foot.title}</li>
                                             </a>
                                         </>
                                         

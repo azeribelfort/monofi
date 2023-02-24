@@ -1,12 +1,13 @@
 import Signin from "@/components/Signin/Signin"
-
+import Layout from "@/components/LayoutForAuthorization/Layout"
 import React from 'react'
 
 function SigninPage() {
   return (
-    <div>
-      <Signin/>
-    </div>
+    <Layout>
+      <Signin/>   
+    </Layout>
+    
   )
 }
 

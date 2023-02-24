@@ -1,0 +1,148 @@
+@font-face {
+    font-family: Archivo;
+    src: url('../fonts/Archivo-Regular.ttf');
+}
+.Signin
+{
+    padding: 50px 50px;
+
+    *{color: #94969A;
+    font-family: Archivo;}
+
+   
+   .Navigations
+   {
+
+        color: #7000FF;
+
+        color: black;
+        flex-direction: row;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        a{
+            color: black;
+            font-weight: 700;
+        }
+        div{
+            span{
+                font-weight: 700;
+
+            }
+            a{
+                color: #7000FF;
+                text-decoration: underline;
+            }
+        }
+
+   }
+   .Header{
+    color: black;
+    font-size: 30px;
+    font-weight: 700;
+    margin-top: 50px;
+
+   }
+   .Divider{
+    margin-top: 30px;
+    color: #94969A;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1px;
+    .line{
+        width: 30%;
+        height: 2px;
+        background-color:#94969A;
+
+    }
+    .text {
+
+        text-align: center;
+        font-size: 16px;
+        min-width: fit-content;
+        font-stretch: expanded;
+        white-space: normal;
+    }
+
+   }
+   form{
+    display: flex;
+    flex-direction: column;
+    .Inputs {
+        margin-top: 30px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        label {
+            .inputContainer{
+                margin-top: 10px;
+                display: flex;
+                align-items: center;
+                height: 40px;
+                width: 270px;
+                border: 1px solid #94969A;
+                border-radius: 50px;
+                padding: 20px;
+                svg{
+                    margin-right: 5px;
+                }
+                
+            }
+            input {
+                font-size: 16px;
+                background-color: white;
+                outline: hidden;
+                border: none;
+            }
+            span {
+                font-size: 17px;
+                font-weight: 700;
+                color: black;
+            }
+            
+        }
+    }
+    .ForgotPass {
+        align-items: center;
+        margin-top: 30px;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        input {
+           border: #7000FF;
+        }
+        label{
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        a{
+            color: #7000FF;
+            font-weight: 700;
+            font-size: 16px;
+        }
+       
+
+    }
+         button {
+            margin-top: 30px;
+            width: 270px;
+            padding: 10px;
+            font-weight: 700;
+            border-radius: 50px;
+            background: #7000FF;
+            box-shadow: 0px 4px 20px #8000FF;
+            border: none;
+            color: white;
+            svg{
+                color: white;
+                path{
+                    color: white;
+                }
+            }
+         }
+   }
+   
+}

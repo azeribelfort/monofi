@@ -1,0 +1,47 @@
+.authorization {
+    display: flex;
+    // overflow: hidden;
+    overflow-y: hidden;
+
+    .left{
+        background-color: linear-gradient(31.22deg, #180334 -8.43%, #3B0087 51.43%, #7000FF 100%);
+        background-image: url('./Back.png');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        width: 100%;
+        height: fit-content;
+        min-height: 100vh;
+        .container {
+            
+            margin-right: 0;
+            position: relative;
+            img{
+                position: absolute;
+            }
+            .Safebox {
+                    right: 100px;
+                }
+                .Bag {
+                    // top :220px ;
+                    right: -200px;
+                   
+                }
+        }
+        
+        
+        }
+    .right{
+        z-index: 1;
+        width: 100%;
+        min-height: 100vh;
+        background-color: white;
+        .container
+        {
+            margin-left: 0;
+         
+        }
+       
+        
+    }
+}
