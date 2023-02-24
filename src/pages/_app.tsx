@@ -7,6 +7,7 @@ import 'node_modules/bootstrap/dist/css/bootstrap.min.css';
 import '../styles/Landing/Landing.scss'
 import '../styles/dashboard/All.scss'
 import '../styles/layoutForAuthorization/Signin.scss'
+import '../styles/layoutForAuthorization/Signup.scss'
 import '../styles/layoutForAuthorization/authorization.scss'
 import type { AppProps } from 'next/app';
 
