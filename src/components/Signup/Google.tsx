@@ -4,7 +4,7 @@ export const Google = () => {
   return (
     <div className="SignupGoogle">
         <GoogleIcon/>
-        <p>Sign Up with Google Account</p>
+        <p>Sign Up with Google</p>
     </div>
   )
 }

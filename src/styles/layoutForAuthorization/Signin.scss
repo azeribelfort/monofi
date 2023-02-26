@@ -44,6 +44,45 @@
     margin-top: 50px;
 
    }
+   .AntoherMethods{
+    .SignupGoogle {
+        margin-top: 20px;
+        cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #7000FF;
+            padding: 10px 45px;
+            border-radius: 50px;
+            box-shadow: 0px 15px 50px rgba(222, 95, 143, 0.12);
+    
+            p {
+                color: white;
+                margin: auto 5px;
+            }
+        }
+    
+        .SignupFB {
+            margin-top: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #FFF;
+            padding: 10px 45px;
+            border-radius: 50px;
+            box-shadow: 0px 15px 50px rgba(222, 95, 143, 0.12);
+    
+            p {
+                color: #000;
+                margin: auto 5px;
+            }
+        }
+        flex-wrap: wrap;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+   }
    .Divider{
     margin-top: 30px;
     color: #94969A;
@@ -91,11 +130,21 @@
                 }
                 
             }
+            input:-webkit-autofill,
+            input:-webkit-autofill:hover,
+            input:-webkit-autofill:focus,
+            input:-webkit-autofill:active {
+                -webkit-box-shadow: 0 0 0 30px white inset !important;
+            }
             input {
+              
                 font-size: 16px;
                 background-color: white;
                 outline: hidden;
                 border: none;
+            }
+            input:focus ~ .inputContainer{
+                background-color: #000;
             }
             span {
                 font-size: 17px;

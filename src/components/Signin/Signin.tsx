@@ -1,5 +1,7 @@
 import Link from "next/link"
 import icons from "@/assets/icons"
+import { Facebook } from "../Signup/Facebook";
+import { Google } from "../Signup/Google";
 
 
 const Arrow = icons.Arrow; 
@@ -15,10 +17,16 @@ const Signin = () => {
         <Link href='#' >
           <Arrow/> Back
         </Link>
-        <div>New to <span>MonoFi</span>? <Link href='#'>Sign Up</Link></div>
+        <div>New to <span>MonoFi</span>? <Link href='/signup'>Sign Up</Link></div>
       </div>
       <div className="Header">
         Sign in
+      </div>
+      <div className="AntoherMethods">
+        <Google/>
+        <Facebook />
+        
+
       </div>
 
       <div className="Divider">
@@ -41,14 +49,14 @@ const Signin = () => {
             <div className="inputContainer">
               
               <User />
-              <input type="email"  autoComplete="off"/>
+              <input type="email"  />
             </div>
           </label>
           <label >
             <span>Password</span> <br />
             <div className="inputContainer">
             <Lock/>
-            <input type="password" autoComplete="off" />
+            <input type="password"  />
             </div>
           </label>
 
