@@ -10,7 +10,14 @@
         display:  flex ;
         flex-direction: row; 
         align-items:  center;
-        
+
+        .rightBar{
+            width: 300px;
+            margin-left: 20px;
+            display: grid;
+            gap: 20px;
+            grid-template-rows: repeat(3,190px);
+        }
                
         
         .Shares {
@@ -28,10 +35,123 @@
             
         }
         .balance {
-            
+            box-shadow: 0px 4px 4px rgba(255, 255, 255, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Archivo;
+            padding: 21px 20px;
+            background-color: black;
+            border-radius: 35px;
+            width:100%;
+
+            h4{
+                margin-left: 10px;
+                text-align: start;
+                font-size: 24px;
+                font-weight: 200;
+            }
+
+            p{
+                margin-top: 20px;
+                font-size: 32px;
+                font-weight: 700;
+            }
         }
         .recents{
-            
+            overflow-y: scroll;
+            display: flex;
+            justify-content: center;
+            box-shadow: 0px 4px 4px rgba(255, 255, 255, 0.5);
+            background-color: black;
+            border-radius: 35px;
+            padding: 21px 20px;
+
+            h4{
+                text-align: center;
+                margin-bottom: 24px;
+            }
+
+            .stock-all{
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+
+                .date{
+                    font-family: Archivo;
+                    font-weight: 100;
+                    opacity: 0.4;
+                    font-size: 14px;
+                }   
+
+                .stock-info{
+                    margin-top: -13px;
+                    display: flex;
+                    justify-content: space-between;
+                    .stock-firm{
+                        display: flex;
+                        align-content: center;
+
+                        p{
+                            font-weight: 700;
+                            margin-left: 13px;
+                        }
+                    }
+
+                    p{
+                        font-family: Archivo;
+                    }
+
+                    .red{
+                        color: red;
+                    }
+
+                    .green{
+                        color:lime;
+                    }
+                }
+
+            }
+
+
+        }
+        .news{
+            box-shadow: 0px 4px 4px rgba(255, 255, 255, 0.5);
+            background-color: black;
+            border-radius: 35px;
+            overflow-y: scroll;
+            display: flex;
+            justify-content: center;
+            padding: 21px 20px;
+
+            h4{
+                text-align: center;
+                margin-bottom: 24px;
+            }
+
+
+            .news-all{
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                font-family: Archivo;
+
+                .date{
+                    font-family: Archivo;
+                    font-weight: 100;
+                    opacity: 0.4;
+                    font-size: 14px;
+                    margin-bottom: -3px;
+                }   
+
+                .title{
+                    font-weight: 700;
+                    text-decoration: underline;
+                    cursor: pointer;
+                }
+
+            }
+
         }
     }
     

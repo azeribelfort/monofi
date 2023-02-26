@@ -1,3 +1,7 @@
+import { Balance } from "./Balance";
+import { Recents } from "./Recents";
+import {News} from './News'
+
 const Dashboard = () => {
     const data = {name : 'Azer'}
   return (
@@ -18,7 +22,15 @@ const Dashboard = () => {
           
         </div>
         <div className="rightBar">
-
+          <div className="balance">
+            <Balance/>
+          </div>
+          <div className="recents">
+            <Recents/>
+          </div>
+          <div className="news">
+            <News/>
+          </div>
         </div>
           </div>
     </div>
