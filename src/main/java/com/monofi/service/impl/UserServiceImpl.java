@@ -1,5 +1,8 @@
 package com.monofi.service.impl;
 
+import com.monofi.auth.TokenProvider;
+import com.monofi.controller.AuthController;
+import com.monofi.dto.AccessTokenDto;
 import com.monofi.dto.RegistrationDto;
 import com.monofi.exception.EmailAlreadyUsedException;
 import com.monofi.exception.NotFoundException;
@@ -17,6 +20,12 @@ import com.monofi.service.UserService;
 import com.monofi.service.EmailVerificationTokenService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -31,10 +40,14 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(UserServiceImpl.class);
+
     private final UserJpaRepository userRepository;
     private final AuthorityJpaRepository authorityRepository;
     private final PasswordEncoder passwordEncoder;
+    private final AuthenticationManager authenticationManager;
     private final ModelMapper modelMapper;
+    private final TokenProvider tokenProvider;
     private final EmailVerificationTokenService emailVerificationTokenService;
     private final SmsVerificationTokenService smsVerificationTokenService;
     private final EmailVerificationTokenRepository emailVerificationTokenRepository;
@@ -119,21 +132,22 @@ public class UserServiceImpl implements UserService {
         if (emailVerificationToken.getVerifiedAt()==null){
             throw new IllegalStateException("Email not verified");
         }
-        smsVerificationToken.getUser().setEnabled(true);
-        return smsVerificationToken.getUser();
+        User user = smsVerificationToken.getUser();
+        LOGGER.info("{} verified",smsVerificationToken.getPhoneNumber());
+        return user;
     }
 
     private User createUserEntity(RegistrationDto dto) {
         User user = modelMapper.map(dto, User.class);
-        Authority authority = authorityRepository.findByAuthority(UserAuthority.ROLE_USER.toString()).orElse(
-                Authority.builder().authority(UserAuthority.ROLE_USER.toString()).build()
+        Authority authority = authorityRepository.findByAuthority(UserAuthority.ROLE_NOT_VERIFIED_USER.toString()).orElse(
+                Authority.builder().authority(UserAuthority.ROLE_NOT_VERIFIED_USER.toString()).build()
         );
         authorityRepository.save(authority);
         Set<Authority> userAuthority = new HashSet<>();
         userAuthority.add(authority);
         user.setAuthorities(userAuthority);
         user.setPassword(passwordEncoder.encode(dto.getPassword()));
-        user.setEnabled(false);
+        user.setEnabled(true);
         user.setAccountNonExpired(true);
         user.setAccountNonLocked(true);
         user.setCredentialsNonExpired(true);

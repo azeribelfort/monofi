@@ -1,5 +1,6 @@
 package com.monofi.service;
 
+import com.monofi.dto.AccessTokenDto;
 import com.monofi.dto.RegistrationDto;
 import com.monofi.model.User;
 import com.monofi.model.EmailVerificationToken;

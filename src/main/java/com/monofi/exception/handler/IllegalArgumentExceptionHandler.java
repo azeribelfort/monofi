@@ -13,6 +13,7 @@ import java.time.LocalDateTime;
 public class IllegalArgumentExceptionHandler {
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<ErrorResponseDto> handleIllegalArgumentException(IllegalArgumentException e) {
+        e.printStackTrace();
         HttpStatus status = HttpStatus.NOT_ACCEPTABLE;
         ErrorResponseDto errorResponseDTO = new ErrorResponseDto(
                 e.getMessage(),

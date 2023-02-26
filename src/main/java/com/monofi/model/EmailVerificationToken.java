@@ -19,7 +19,7 @@ public class EmailVerificationToken {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "token",nullable = false)
+    @Column(name = "token")
     private String token;
     @Column(name = "created_at")
     private LocalDateTime createdAt;

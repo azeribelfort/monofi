@@ -6,13 +6,11 @@
 # * 'ptr' and 'ptrp' create a POST request with a simple or parameter-like body;
 # * 'mptr' and 'fptr' create a POST request to submit a form with a text or file field (multipart/form-data);
 
-POST http://localhost:8082/auth/register
+POST http://localhost:8082/auth/login
 Content-Type: application/json
 
 {
-  "name": "Murad",
-  "surname": "Abbaszade",
-  "username": "muradabbaszade098@gmail.com",
-  "password": null
+"username": "muradabbaszade098@gmail.com",
+  "password": "123456"
 }
 ###

@@ -26,4 +26,14 @@ cors:
 
 
 
-
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: 114317396132-08p2cbp4eeml1hn2ned4fsropdsmsj18.apps.googleusercontent.com
+            client-secret: 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
+          facebook:
+            client-id: 753446549462765
+            client-secret: cca97b61f11dfb7580619d33a3a66e32

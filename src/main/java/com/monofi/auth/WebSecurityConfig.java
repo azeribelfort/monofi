@@ -1,6 +1,7 @@
 package com.monofi.auth;
 
-import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -10,38 +11,75 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.config.oauth2.client.CommonOAuth2Provider;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.oauth2.client.registration.ClientRegistration;
+import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
+import org.springframework.security.oauth2.client.registration.InMemoryClientRegistrationRepository;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.stereotype.Component;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import java.util.Arrays;
+import java.util.List;
 
 @Configuration
 @EnableWebSecurity
-@RequiredArgsConstructor
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private final UserDetailsServiceImpl userService;
-    private final UnauthorizedEntryPoint unauthorizedEntryPoint;
-    private final UserDetailsServiceImpl userDetailsService;
-    private final TokenProvider jwtTokenUtil;
+    @Value("${spring.security.oauth2.client.registration.facebook.client-id}")
+    private String facebookClientId;
+
+    @Value("${spring.security.oauth2.client.registration.facebook.client-secret}")
+    private String facebookClientSecret;
+
+    @Value("${spring.security.oauth2.client.registration.google.client-id}")
+    private String GOOGLE_CLIENT_ID;
+
+    @Value("${spring.security.oauth2.client.registration.google.client-secret}")
+    private String GOOGLE_SECRET_ID;
+
+    @Autowired
+    private FacebookOAuth2SuccessHandler facebookOAuth2SuccessHandler;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+    @Autowired
+    private GoogleOAuth2SuccessHandler googleOAuth2SuccessHandler;
+    @Autowired
+    private UserDetailsServiceImpl userService;
+    @Autowired
+    private UnauthorizedEntryPoint unauthorizedEntryPoint;
+    @Autowired
+    private UserDetailsServiceImpl userDetailsService;
+    @Autowired
+    private TokenProvider jwtTokenUtil;
+    @Autowired
+    private CustomAuthenticationFailureHandler customAuthenticationFailureHandler;
 
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userService)
-                .passwordEncoder(encoder());
+                .passwordEncoder(passwordEncoder);
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
+                .oauth2Login()
+                .failureHandler(customAuthenticationFailureHandler)
+                .successHandler(googleOAuth2SuccessHandler)
+                .successHandler(facebookOAuth2SuccessHandler)
+                .clientRegistrationRepository(clientRegistrationRepository())
+                .and()
                 .authorizeRequests()
-                .antMatchers("/auth/login","/auth/register","/auth/verify/email","/auth/sms","auth/verify/number").permitAll()
+                .antMatchers("/auth/login","/auth/register","/auth/oauth2/token","/auth/verify/email").permitAll()
                 .antMatchers("/user/authorities","/user/credentials").hasAuthority("ROLE_ADMIN")
+                .antMatchers("/auth/sms","/auth/verify/number").hasAuthority("ROLE_NOT_VERIFIED_USER")
+                .antMatchers("/auth/user").hasAuthority("ROLE_USER")
                 .anyRequest().authenticated()
                 .and()
                 .logout()
@@ -69,11 +107,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public BCryptPasswordEncoder encoder(){
-        return new BCryptPasswordEncoder();
-    }
-
-    @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOrigins(Arrays.asList("*"));
@@ -85,5 +118,29 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return source;
     }
 
+    @Bean
+    public ClientRegistrationRepository clientRegistrationRepository() {
+        List<ClientRegistration> registrations = Arrays.asList(
+                facebookClientRegistration(),
+                googleClientRegistration()
+        );
+        return new InMemoryClientRegistrationRepository(registrations);
+    }
+
+    private ClientRegistration facebookClientRegistration() {
+        return CommonOAuth2Provider.FACEBOOK
+                .getBuilder("facebook")
+                .clientId("753446549462765")
+                .clientSecret("cca97b61f11dfb7580619d33a3a66e32")
+                .build();
+    }
+
+    private ClientRegistration googleClientRegistration() {
+        return CommonOAuth2Provider.GOOGLE
+                .getBuilder("google")
+                .clientId("114317396132-08p2cbp4eeml1hn2ned4fsropdsmsj18.apps.googleusercontent.com")
+                .clientSecret("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")
+                .build();
+    }
 
 }

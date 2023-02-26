@@ -11,6 +11,4 @@ import javax.validation.constraints.NotBlank;
 public class SmsRequestDto {
     @NotBlank
     private String phoneNumber;
-    @NotBlank
-    private String userId;
 }

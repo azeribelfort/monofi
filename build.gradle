@@ -33,4 +33,7 @@ dependencies {
     implementation 'mysql:mysql-connector-java:8.0.15'
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-mail', version: '1.2.0.RELEASE'
     implementation group: 'com.twilio.sdk', name: 'twilio', version: '9.2.2'
+    implementation group: 'org.springframework.security.oauth', name: 'spring-security-oauth2', version: '2.3.5.RELEASE'
+    implementation group: 'org.springframework.security', name: 'spring-security-oauth2-client', version: '5.7.5'
+    implementation group: 'org.springframework.security', name: 'spring-security-oauth2-jose', version: '5.7.3'
 }

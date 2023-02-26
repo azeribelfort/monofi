@@ -11,9 +11,8 @@ import java.util.Objects;
 
 @Getter
 @Setter
-@ToString
 @Entity
-@RequiredArgsConstructor
+@NoArgsConstructor
 @Builder
 @AllArgsConstructor
 @Table(name = "authority")
@@ -43,4 +42,8 @@ public class Authority implements GrantedAuthority {
         return getClass().hashCode();
     }
 
+    @Override
+    public String toString() {
+        return super.toString();
+    }
 }
