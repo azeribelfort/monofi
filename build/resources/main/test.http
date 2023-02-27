@@ -6,11 +6,11 @@
 # * 'ptr' and 'ptrp' create a POST request with a simple or parameter-like body;
 # * 'mptr' and 'fptr' create a POST request to submit a form with a text or file field (multipart/form-data);
 
-POST http://localhost:8082/auth/login
+POST http://localhost:8082/create-payment-intent
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtdXJhZGFiYmFzemFkZTA5OEBnbWFpbC5jb20iLCJyb2xlcyI6IlJPTEVfVVNFUiIsImlhdCI6MTY3NzUzMTA2MSwiZXhwIjoxNjc3NTQ5MDYxfQ.6MWKjtFA5O3FuQl89GJAZLksnMKHIDAoXoEz1i9O45A
 
 {
-"username": "muradabbaszade098@gmail.com",
-  "password": "123456"
+  "price": "10"
 }
 ###

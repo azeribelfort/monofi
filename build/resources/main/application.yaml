@@ -23,3 +23,8 @@ twilio:
   auth_token: 043e891ff206b9724d562ce1770f63ab
   trial_number: +19148615996
 
+stripe:
+  apiKey:
+    secret: sk_test_51Mg9vLG3lJlknf5X1FVTsaKXuJmXF4jkVcCRFDt5P5bu77DjUHt3foVOFBIY09ym4dcqdHiy0GxaYLqiY9xv9bZI009FApjNLo
+    publishable: pk_test_51Mg9vLG3lJlknf5XwvIcbbrYyxUfQrqr8JoCjnHOchqAajs5RozQCtuc1PvoehNI7zT4pTNXGfZk8UK0m7FySWey00VIZL9atB
+

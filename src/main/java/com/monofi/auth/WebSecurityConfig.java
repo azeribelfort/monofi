@@ -72,14 +72,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .oauth2Login()
                 .failureHandler(customAuthenticationFailureHandler)
                 .successHandler(googleOAuth2SuccessHandler)
-                .successHandler(facebookOAuth2SuccessHandler)
-                .clientRegistrationRepository(clientRegistrationRepository())
                 .and()
                 .authorizeRequests()
                 .antMatchers("/auth/login","/auth/register","/auth/oauth2/token","/auth/verify/email").permitAll()
                 .antMatchers("/user/authorities","/user/credentials").hasAuthority("ROLE_ADMIN")
                 .antMatchers("/auth/sms","/auth/verify/number").hasAuthority("ROLE_NOT_VERIFIED_USER")
-                .antMatchers("/auth/user").hasAuthority("ROLE_USER")
+                .antMatchers("/auth/user","/create-payment-intent","/payment/events").hasAuthority("ROLE_USER")
                 .anyRequest().authenticated()
                 .and()
                 .logout()
@@ -118,29 +116,5 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return source;
     }
 
-    @Bean
-    public ClientRegistrationRepository clientRegistrationRepository() {
-        List<ClientRegistration> registrations = Arrays.asList(
-                facebookClientRegistration(),
-                googleClientRegistration()
-        );
-        return new InMemoryClientRegistrationRepository(registrations);
-    }
-
-    private ClientRegistration facebookClientRegistration() {
-        return CommonOAuth2Provider.FACEBOOK
-                .getBuilder("facebook")
-                .clientId("753446549462765")
-                .clientSecret("cca97b61f11dfb7580619d33a3a66e32")
-                .build();
-    }
-
-    private ClientRegistration googleClientRegistration() {
-        return CommonOAuth2Provider.GOOGLE
-                .getBuilder("google")
-                .clientId("114317396132-08p2cbp4eeml1hn2ned4fsropdsmsj18.apps.googleusercontent.com")
-                .clientSecret("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")
-                .build();
-    }
 
 }
