@@ -24,7 +24,7 @@ export default function Home() {
           </div>
           <div className="col-9">
             {/* <Layout /> */}
-            <Dashboard/>
+            <Dashboard />
 
           </div>
         </div>
