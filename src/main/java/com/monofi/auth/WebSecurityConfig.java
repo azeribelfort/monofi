@@ -11,43 +11,23 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.config.oauth2.client.CommonOAuth2Provider;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.oauth2.client.registration.ClientRegistration;
-import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
-import org.springframework.security.oauth2.client.registration.InMemoryClientRegistrationRepository;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.stereotype.Component;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import java.util.Arrays;
-import java.util.List;
 
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Value("${spring.security.oauth2.client.registration.facebook.client-id}")
-    private String facebookClientId;
-
-    @Value("${spring.security.oauth2.client.registration.facebook.client-secret}")
-    private String facebookClientSecret;
-
-    @Value("${spring.security.oauth2.client.registration.google.client-id}")
-    private String GOOGLE_CLIENT_ID;
-
-    @Value("${spring.security.oauth2.client.registration.google.client-secret}")
-    private String GOOGLE_SECRET_ID;
-
-    @Autowired
-    private FacebookOAuth2SuccessHandler facebookOAuth2SuccessHandler;
     @Autowired
     private PasswordEncoder passwordEncoder;
     @Autowired
-    private GoogleOAuth2SuccessHandler googleOAuth2SuccessHandler;
+    private OAuth2SuccessHandler googleOAuth2SuccessHandler;
     @Autowired
     private UserDetailsServiceImpl userService;
     @Autowired

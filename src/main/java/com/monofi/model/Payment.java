@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Table(name = "payment")
 @Getter
 @Setter
-@Builder
+@NoArgsConstructor
 @ToString
 public class Payment {
 

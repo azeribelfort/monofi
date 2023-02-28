@@ -1,6 +1,5 @@
 package com.monofi.controller;
 
-import com.monofi.auth.GoogleOAuth2SuccessHandler;
 import com.monofi.dto.CreatePaymentRequest;
 import com.monofi.dto.CreatePaymentResponse;
 import com.monofi.model.Payment;
@@ -19,7 +18,6 @@ import com.stripe.param.PaymentIntentCreateParams;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -49,13 +47,12 @@ public class PaymentController {
         try {
             PaymentIntent paymentIntent = PaymentIntent.create(paymentIntentCreateParams);
             LOGGER.info("{} create payment intent",username);
-            paymentService.save(Payment.builder()
-                    .id(paymentIntent.getId())
-                    .accountId(user.getId())
-                    .price(paymentIntent.getAmount())
-                    .paymentState(PaymentState.UNSUCCESSFUL)
-                    .build()
-            );
+            Payment payment = new Payment();
+            payment.setId(paymentIntent.getId());
+            payment.setAccountId(user.getId());
+            payment.setPrice(paymentIntent.getAmount());
+            payment.setPaymentState(PaymentState.UNSUCCESSFUL);
+            paymentService.save(payment);
             return new ResponseEntity<>(new CreatePaymentResponse(paymentIntent.getClientSecret()), HttpStatus.CREATED);
         } catch (StripeException e) {
             System.out.println(e.getMessage());
