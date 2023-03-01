@@ -21,9 +21,9 @@ const ComplanySlider = () => {
                 modules={[Autoplay]}
                 className="mySwiper"
             >
-                {images.slider.map(e =>
+                {images.slider.map((e,index) =>
 
-                    <SwiperSlide><Image src={e} alt="" /></SwiperSlide>
+                    <SwiperSlide key={index} ><Image src={e} alt="" /></SwiperSlide>
                 )}
 
             </Swiper>
