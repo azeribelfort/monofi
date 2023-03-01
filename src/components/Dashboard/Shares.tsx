@@ -82,8 +82,8 @@ const Shares = () =>
             Shares overview 💸 
         </div>
         <div className="Values">
-            {data.map(e => (
-                <div className="valueBox"  style={{background:e.color}}>
+            {data.map((e,index) => (
+                <div className="valueBox" key={index}  style={{background:e.color}}>
                 <Info />
                 <div className="info">
                     <div className="name">
