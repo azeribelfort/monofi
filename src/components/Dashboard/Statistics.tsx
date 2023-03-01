@@ -19,7 +19,7 @@ const Statistics = () =>
         </span>
         <div className="Values">
             {
-                data.map(e=>(<div className="valueBox">
+                data.map((e,index)=>(<div key={index} className="valueBox">
                     <div className="name">
                         {e.name}
 
