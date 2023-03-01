@@ -12,8 +12,8 @@ const Footer = () =>
                     <a to='/'><span>Mono</span>Fi</a>
                 </div>
                 {
-                    footerData.map((data)=>(
-                        <div className='footer-links'>
+                    footerData.map((data,index)=>(
+                        <div key={index} className='footer-links'>
                             <p>{data.head}</p>
                             <ul className='ful'>
                                 {
