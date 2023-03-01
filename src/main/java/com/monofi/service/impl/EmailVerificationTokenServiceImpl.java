@@ -3,6 +3,7 @@ package com.monofi.service.impl;
 import com.monofi.exception.NotFoundException;
 
 import com.monofi.model.EmailVerificationToken;
+import com.monofi.model.User;
 import com.monofi.repository.EmailVerificationTokenRepository;
 import com.monofi.service.EmailVerificationTokenService;
 import lombok.RequiredArgsConstructor;
@@ -20,6 +21,12 @@ public class EmailVerificationTokenServiceImpl implements EmailVerificationToken
     @Override
     public EmailVerificationToken findByToken(String token) {
         return emailVerificationTokenRepository.findByToken(token)
+                .orElseThrow(()->new NotFoundException("Can't find token"));
+    }
+
+    @Override
+    public EmailVerificationToken findByUser(User user) {
+        return emailVerificationTokenRepository.findByUser(user)
                 .orElseThrow(()->new NotFoundException("Can't find token"));
     }
 

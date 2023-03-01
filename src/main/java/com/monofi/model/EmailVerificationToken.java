@@ -23,8 +23,6 @@ public class EmailVerificationToken {
     private String token;
     @Column(name = "created_at")
     private LocalDateTime createdAt;
-    @Column(name = "expired_at")
-    private LocalDateTime expiredAt;
     @Column(name = "verified_at")
     private LocalDateTime verifiedAt;
 

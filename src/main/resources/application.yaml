@@ -20,7 +20,7 @@ spring:
       ssl.trust: smtp.gmail.com
 twilio:
   account_sid: AC95a99a41f363dc2ff6fe1131d83d5b08
-  auth_token: 043e891ff206b9724d562ce1770f63ab
+  auth_token: 243bf42307809defee00bf7b0af57967
   trial_number: +19148615996
 
 stripe:

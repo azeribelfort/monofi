@@ -6,32 +6,8 @@
 # * 'ptr' and 'ptrp' create a POST request with a simple or parameter-like body;
 # * 'mptr' and 'fptr' create a POST request to submit a form with a text or file field (multipart/form-data);
 
-POST http://localhost:8082/payment/events
+POST http://localhost:8082/auth/resend-email
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtdXJhZGFiYmFzemFkZTA5OEBnbWFpbC5jb20iLCJyb2xlcyI6IlJPTEVfVVNFUiIsImlhdCI6MTY3NzU2NTE3MSwiZXhwIjoxNjc3NTgzMTcxfQ.TXExCybD8PPCHjgm2YCnM6qESboRioVFWw5jUgJB1Sk
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtdXJhZGFiYmFzemFkZTA5OEBnbWFpbC5jb20iLCJyb2xlcyI6IlJPTEVfTk9UX1ZFUklGSUVEX1VTRVIiLCJpYXQiOjE2Nzc2OTYxNTksImV4cCI6MTY3NzcxNDE1OX0.s9t-pkfZi4sMNQw8yYoantvkx_vbrrTGdxrhnI8SEJA
 
-{
-  "url": "https://api.stripe.com/v1/payment_intents",
-  "method": "post",
-  "parameters": {
-    "amount": 2000,
-    "confirm": "true",
-    "currency": "usd",
-    "description": "(created by Stripe CLI)",
-    "payment_method": "pm_card_visa",
-    "payment_method_types": [
-      "card"
-    ],
-    "shipping": {
-      "name": "Jenny Rosen",
-      "address": {
-        "line1": "510 Townsend St",
-        "postal_code": "94103",
-        "city": "San Francisco",
-        "state": "CA",
-        "country": "US"
-      }
-    }
-  }
-}
 ###

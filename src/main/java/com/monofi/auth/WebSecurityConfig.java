@@ -1,7 +1,6 @@
 package com.monofi.auth;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -56,8 +55,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/auth/login","/auth/register","/auth/oauth2/token","/auth/verify/email").permitAll()
                 .antMatchers("/user/authorities","/user/credentials").hasAuthority("ROLE_ADMIN")
-                .antMatchers("/auth/sms","/auth/verify/number").hasAuthority("ROLE_NOT_VERIFIED_USER")
-                .antMatchers("/auth/user","/create-payment-intent","/payment/events").hasAuthority("ROLE_USER")
+                .antMatchers("/auth/sms","/auth/verify/number","/auth/check-email-verification","/auth/resend-email").hasAuthority("ROLE_NOT_VERIFIED_USER")
+                .antMatchers("/auth/user","/create-payment-intent","/payment/events","/auth/check-email-verification").hasAuthority("ROLE_USER")
                 .anyRequest().authenticated()
                 .and()
                 .logout()

@@ -128,6 +128,30 @@ public class AuthController {
         return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
     }
 
+    @GetMapping("/check-email-verification")
+    public ResponseEntity<Void> checkEmailVerification(Authentication authentication){
+        String username = authentication.getName();
+        User user = userService.findByUsername(username);
+        EmailVerificationToken emailVerificationToken = emailVerificationTokenService.findByUser(user);
+        if(emailVerificationToken.getVerifiedAt() == null) return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PostMapping("/resend-email")
+    public ResponseEntity<Void> sendEmailVerification(Authentication authentication) throws Exception {
+        String username = authentication.getName();
+        User user = userService.findByUsername(username);
+        EmailVerificationToken emailVerificationToken = emailVerificationTokenService.findByUser(user);
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        String jwtToken = tokenProvider.generateToken(authentication);
+        emailSenderService
+                .sendEmail(username,
+                        "Verification email",
+                        "http://localhost:8082/auth/verify/email?token="+ emailVerificationToken.getToken()+"&jwt="+jwtToken);
+        LOGGER.info("verification email sended to {}",username);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
     @GetMapping("/verify/number")
     @Transactional
     public ResponseEntity<AccessTokenDto> verifyPhoneNumber(@RequestParam("token") String token,Authentication authentication){

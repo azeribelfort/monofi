@@ -96,7 +96,6 @@ public class UserServiceImpl implements UserService {
         EmailVerificationToken emailVerificationToken = EmailVerificationToken.builder()
                 .token(token)
                 .createdAt(LocalDateTime.now())
-                .expiredAt(LocalDateTime.now().plusMinutes(15))
                 .user(user).build();
         return emailVerificationTokenService.save(emailVerificationToken);
     }
@@ -108,9 +107,6 @@ public class UserServiceImpl implements UserService {
         EmailVerificationToken emailVerificationToken = emailVerificationTokenService.findByToken(token);
         if(emailVerificationToken.getVerifiedAt()!=null){
             throw new TokenNotSupportedException("Token already verified");
-        }
-        if (emailVerificationToken.getExpiredAt().isBefore(LocalDateTime.now())){
-            throw new TokenNotSupportedException("Token expired");
         }
         emailVerificationToken.setVerifiedAt(LocalDateTime.now());
         return emailVerificationToken.getUser();

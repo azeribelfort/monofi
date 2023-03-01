@@ -1,6 +1,7 @@
 package com.monofi.service;
 
 import com.monofi.model.EmailVerificationToken;
+import com.monofi.model.User;
 
 import java.util.List;
 
@@ -15,5 +16,6 @@ public interface EmailVerificationTokenService {
 
     void deleteById(Long id);
 
+    EmailVerificationToken findByUser(User user);
 
 }

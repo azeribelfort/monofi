@@ -47,11 +47,7 @@ public class OAuth2SuccessHandler implements AuthenticationSuccessHandler {
     @Override
     @Transactional
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response , Authentication authentication) throws IOException, ServletException {
-        System.out.println(authentication);
         OAuth2AuthenticationToken oAuth2AuthenticationToken = (OAuth2AuthenticationToken) authentication;
-        if(oAuth2AuthenticationToken.getPrincipal().getAttributes().get("iss")!=null){
-            System.out.println("GOOGLE");
-        }
         String email = oAuth2AuthenticationToken.getPrincipal().getAttributes().get("email").toString();
         if (userJpaRepository.findByUsername(email).isPresent()){
             User user = userJpaRepository.findByUsername(email).get();
