@@ -9,6 +9,7 @@ import '../styles/dashboard/All.scss'
 import '../styles/layoutForAuthorization/Signin.scss'
 import '../styles/layoutForAuthorization/Signup.scss'
 import '../styles/layoutForAuthorization/authorization.scss'
+import '../styles/Payment/Payment.scss'
 import type { AppProps } from 'next/app';
 
 export default function App({ Component, pageProps }: AppProps) {
