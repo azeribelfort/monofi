@@ -1,0 +1,513 @@
+.Payment{
+    background-color: linear-gradient(31.22deg, #180334 -8.43%, #3B0087 51.43%, #7000FF 100%);
+    background-image: url(./back.png);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: fit-content;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Roboto',sans-serif;
+
+    // .assets{
+    //     height: 100%;
+    //     .key{
+    //         transform: scale(1.4) rotate(180deg);
+    //         position: absolute;
+    //         left: -134px;
+    //         top: 164px;
+    //     }
+
+    //     .box{
+    //         transform: rotate(35deg);
+    //         position: relative;
+    //         right: 200px;
+    //         top: -140px;
+    //         left:-300px;
+
+    //         @media (max-width: 1244px){
+    //             visibility: hidden;
+    //         }
+    //     }
+
+    //     .box2{
+    //         transform: scale(1.3) rotate(-20deg);
+    //         position: absolute;
+    //         bottom: -100px;
+    //         right: -100px;
+    //     }
+
+    //     .bag{
+    //         position: absolute;
+    //         bottom: -100px;
+    //         left:200px;
+    //         transform: scale(1.2) rotate(30deg);
+    //     }
+
+    //     .bag2{
+    //         position: absolute;
+    //         top: -30px;
+    //         right:200px;
+    //         transform: scale(1.5) rotate(-30deg);
+    //     }
+
+
+    // }
+
+    .red{
+        color: red;
+    }
+
+    .sect{
+        z-index: 1000;
+        .payment-box{
+            display: flex;
+            border: 1px  #7000FF;
+            border-style: solid;
+            padding: 30px 68px;
+            border-radius: 30px;
+            background-color: #000;
+
+
+            .Card{
+                width: 70%;
+                display: flex;
+                flex-direction: column;
+
+                .head{
+                    display: flex;
+                    align-items: center;
+                    width: 100%;
+
+                    .logo{
+                        margin-right: 23px;
+                        justify-content: center;
+                        align-items: center;
+                        font-size: 35px;
+                        padding: 6px 25px;
+                        border-radius: 18px;
+                        background-color: #7000FF;
+                    }
+
+                    h3{
+                        span{
+                            opacity: 0.4;
+                        }
+                    }
+                }
+
+                .countdown{
+                    margin-top: 10px;
+                    width: 100%;
+                    display: flex;
+                    justify-content: end;
+
+                    .Count{
+                        font-family: Archivo;
+                        width: 200px;
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+
+                        p{
+                            margin-left: 7px;
+                            margin-top: 5px;
+                            font-size: 30px;
+                            font-weight: 700;
+                        }
+
+                        input[type=number]{
+
+                            border-radius: 12px;
+                            color: white;
+                            font-size: 30px;
+                            -moz-appearance: textfield;
+                            padding: 3px 11px;
+                            width:40px;
+                            background-color: #7000FF;
+                            border: none;
+                        }
+                        input[type=number]:nth-child(n+2){
+                            margin-left: 10px;
+                        }
+                        input::-webkit-outer-spin-button,
+                        input::-webkit-inner-spin-button {
+                        -webkit-appearance: none;
+                        margin: 0;
+}
+                    }
+                }
+
+                .card-infos{
+                    margin-top: 15px;
+                    font-family: Archivo;
+                     .card-number{
+                        p{
+                            opacity: 0.4;
+                        }
+
+                        .number-input{
+                            border: 1.5px solid #7000FF;
+                            border-radius: 18px;
+                            padding: 10px;
+                            width: 100%;
+                            height: 60px;
+                            display: flex;
+                            justify-content: space-evenly;
+                            align-items: center;
+                            background-color: #fff;
+
+                            input[type=text]{
+                                letter-spacing: 4px;
+                                padding: 10px;
+                                -moz-appearance: textfield;
+                                outline: unset;
+                                border: none;
+                                height: 100%;
+                                text-align: center;
+                                font-size: 20px;
+                                width: 100%;
+                            }
+
+                            .visa{
+                                font-size: 35px;
+                                color: #7000FF;
+                            }
+
+                            .check{
+                                font-size: 25px;
+                                color: limegreen;
+                            }
+
+                        }
+
+                     }
+
+                     .cvv-number{
+                        margin-top: 20px;
+                        display: flex;
+                        align-items: center;
+                        
+                        .texts{
+                            width: 50%;
+                            p{
+                                opacity: 0.4;
+                            }
+                        }
+
+                        .number-input{
+                            display: flex;
+                            justify-content: space-evenly;
+                            align-items: center;
+                            width: 50%;
+                            border: 1.5px solid #7000FF;
+                            border-radius: 18px;
+                            padding: 10px;
+                            height: 60px;
+                            background-color: #fff;
+
+                            input[type=text]{
+                                height: 100%;
+                                width: 70%;
+                                padding: 10px;
+                                -moz-appearance: textfield;
+                                border: none;
+                                font-size: 20px;
+                                text-align: center;
+                            }
+
+                            input::-webkit-outer-spin-button,
+                            input::-webkit-inner-spin-button {
+                            -webkit-appearance: none;
+                            margin: 0;
+                            }
+
+                            .dial{
+                                font-size: 30px;
+                                color: #9b9b9b;
+                            }
+                        }
+                     }
+
+                     .expire{
+                        display: flex;
+                        align-items: center;
+                        margin-top: 20px;
+
+                        .texts{
+                            width: 50%;
+                            p{
+                                opacity: 0.4;
+                            }
+                        }
+
+                        .number-input{
+                            display: flex;
+                            justify-content: space-evenly;
+                            align-items: center;
+                            width: 50%;
+
+                            .flex{
+                                display: flex;
+                                flex-direction: column;
+                                width: 45%;
+                            }
+
+                            p{
+                                margin-top: 10px;
+                                margin-left: 18px;
+                                margin-right: 18px;
+                                font-size: 30px;
+                            }
+
+                            input[type=text]{
+                                border: 1.5px solid #7000FF;
+                                border-radius: 18px;
+                                background-color: #fff;
+                                font-size: 20px;
+                                height: 60px;
+                                padding: 10px;
+                                -moz-appearance: textfield;
+                                text-align: center;
+                            }
+
+                            input::-webkit-outer-spin-button,
+                            input::-webkit-inner-spin-button {
+                            -webkit-appearance: none;
+                            margin: 0;
+                            }
+
+                        }
+                     }
+
+                     .password{
+                        display: flex;
+                        align-items: center;
+
+                        .texts{
+                            width: 50%;
+                            p{
+                                opacity: 0.4;
+                            }
+
+                        }
+
+                        .number-input{
+                            width: 50%;
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-evenly;
+                            border: 1.5px solid #7000FF;
+                            border-radius: 18px;
+                            background-color: #fff;
+                            height: 60px;
+                            padding: 10px;
+
+                            .dial{
+                                font-size: 30px;
+                                color: #9b9b9b;
+                            }
+
+                            input[type=password]{
+                                width: 70%;
+                                font-size: 20px;
+                                text-align: center;
+                                border: none;
+                                -moz-appearance: textfield;
+                            }
+                            input::-webkit-outer-spin-button,
+                            input::-webkit-inner-spin-button {
+                            -webkit-appearance: none;
+                            margin: 0;
+                            }
+
+                        }
+                     }
+
+                     button{
+                        margin-top: 50px;
+                        font-weight: 700;
+                        font-size: 24px;
+                        width: 100%;
+                        height: 60px;
+                        color: #fff;
+                        background: #7000FF;
+                        border: 1px solid #7000FF;
+                        border-radius: 18px;
+                        transition: 0.2s ease-out;
+
+                        &:hover{
+                            background-color: #3B0087;
+                        }
+                     }
+                    
+
+                }
+            }
+
+            .Billing{
+                font-family: Archivo;
+                display: flex;
+                justify-content: center;
+                align-items: end;
+                width: 30%;
+                margin-left: 60px;
+                .Order{
+                    height: 500px;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: flex-end;
+                    padding: 25px 34px;
+                    background-color: #7000FF;
+                    border-radius: 18px;
+
+                    .CheckoutCard{
+                        font-family: Archivo;
+                        position: relative;
+                        top: -10px;
+                        padding: 24px;
+                        background: #FFFFFF;
+                        border: 5px solid #7000FF;
+                        border-radius: 18px;
+
+                        .first{
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            .qr{
+                                color: #000;
+                                font-size: 80px;
+                            }
+
+                            p{
+                                margin-top: 10px;
+                                margin-left: 5px;
+                                color: #000;
+                                font-weight: 700;
+                                font-size: 1.1rem;
+                            }
+                        }
+
+                        .line{
+                            margin-top: 10px;
+                            border: 3px solid #7000FF;
+                            width: 100%;
+                            border-radius: 5px;
+                        }
+
+                        .customer{
+                            display: flex;
+                            flex-direction: column;
+                            margin-top: 20px;
+
+                            .name{
+                                display: flex;
+                                justify-content: space-between;
+                                p{
+                                    color:#000;
+                                    font-size: 20px;
+                                    font-weight: 700;
+                                }
+
+                                .chip{
+                                    font-size: 30px;
+                                    color:#7000FF;
+                                }
+                            }
+
+                            .numberr{
+                                font-size: 20px;
+                                color:black;
+                            }
+
+                            .dt{
+                                margin-top: 40px;
+                                font-weight: 700;
+                                display: flex;
+                                justify-content: space-between;
+                                color: black;
+                            }
+
+                            .exp{
+                                margin-top: -10px;
+                                display: flex;
+                                justify-content: space-between;
+                                color: black;
+                            }
+
+                            .visa2{
+                                margin-left: auto;
+                                margin-right: auto;
+                                font-size: 55px;
+                                color: #3B0087;
+                            }
+                        }
+                    }
+
+                    .order-info{
+                        display: flex;
+                        flex-direction: column;
+                        h6{
+                            font-weight: 700;
+                        }
+
+                        .order-num, .operation, .fee, .order-size{
+                            display: flex;
+                            justify-content: space-between;
+                        }
+
+                        .payment-due{
+                            display: flex;
+                            flex-direction: column;
+                            padding: 20px 19px;
+                            width: 100%;
+                            height: 80px;
+                            background-color: #FFFFFF;
+                            border: 2px solid #7000FF;
+                            box-shadow: 0px 9px 9px rgba(0, 0, 0, 0.8);
+                            border-radius: 18px;
+
+                            h6{
+                                color:#000;
+                                opacity: 0.5;
+                            }
+
+                            div{
+                                display: flex;
+                                justify-content: space-between;
+                                margin-top: -6px;
+                                p{
+                                    font-size: 20px;
+                                    color:#000;
+                                    font-weight: 700;
+
+                                    .s1{
+                                        opacity: 0.5;
+                                        font-size: 16px;
+                                    }
+
+                                    .s2{
+                                        font-size: 16px;
+                                        opacity: 0.3;
+                                    }
+                                }
+
+                                .card{
+                                    margin-top: -18px;
+                                    background: unset;
+                                    border: none;
+                                    font-size: 40px;
+                                    color: #000;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+    }
+}
