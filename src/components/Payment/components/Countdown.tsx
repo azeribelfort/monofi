@@ -12,10 +12,12 @@ function Countdown() {
         const interval = setInterval(() => {
           if (minute === 0 && second1 === 0 && second2 === 0) {
             clearInterval(interval);
+            
             // NOTE: as soon as countdown finish Next-Router push
             // the root path to the address bar.
 
-            // router.push('/')
+            router.push('/')
+
           } else if (second1 === 0 && second2 === 0) {
             setMinute((prevMinute) => prevMinute - 1);
             setSecond1(5);
