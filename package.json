@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@next/font": "13.1.6",
+    "@stripe/stripe-js": "^1.48.0",
     "@svgr/webpack": "^6.5.1",
     "@types/node": "18.13.0",
     "@types/react": "18.0.28",
