@@ -1,14 +1,12 @@
+import Landing from '@/components/Landing/Landing';
 import Head from 'next/head';
-import Header from '@/components/Header/Header';
-import Sidebar from '@/components/SideBar/Sidebar';
-import Layout from '@/components/Main/Layout';
-import Dashboard from '../components/Dashboard/Dashboard'
+
 export default function Home() {
   return (
     <>
       <Head>
-        <title>MonoFi Marketplace</title>
-        <meta name="description" content="MonoFi Marketplace" />
+        <title>MonoFi</title>
+        <meta name="description" content="MonoFi" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta
           name="keywords"
@@ -16,19 +14,7 @@ export default function Home() {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Header />
-      <main className="container mw-100 mx-5">
-        <div className="row">
-          <div className="col-2">
-            <Sidebar />
-          </div>
-          <div className="col-9">
-            {/* <Layout /> */}
-            <Dashboard/>
-
-          </div>
-        </div>
-      </main>
+      <Landing />
     </>
   );
 }

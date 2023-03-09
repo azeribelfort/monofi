@@ -1,0 +1,76 @@
+.indv-page{
+
+    h1{
+        text-align: center;
+    }
+
+    .indv-container{
+        margin: 4rem 0;
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+
+        .center-container{
+            flex: 3;
+            background-color: black;
+            border-radius: 18px;
+
+            .center-wrapper{
+                padding: 52px 32px;
+                padding-bottom: 20px;
+
+                .bottom-container{
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: space-between;
+                    padding: 45px 0;
+
+                    .quantity-con{
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 115px;
+                        height: 40px;
+                        background-color: rgba(255, 255, 255, 0.25);
+                        border-radius: 18px;
+
+                        .quantity-btns{
+                            background: none;
+                            border: none;
+                            color: white;
+                            font-size: 36px;
+                            font-weight: 600;
+                            &:first-child{
+                                padding-left: 10px;
+                            }
+                            &:last-child{
+                                padding-right: 10px;
+                            }
+                        }
+
+                        .quantity-input{
+                            background: none;
+                            color: white;
+                            outline: none;
+                            border: none;
+                            width: 100%;
+                            text-align: center;
+                            font-size: 28px;
+                        }
+                    }
+
+                    .purple-btns{
+                        background-color: #7000FF;
+                        width: 150px;
+                        height: 65px;
+                        border-radius: 18px;
+                        color: white;
+                        font-size: 26px;
+                        font-weight: 600;
+                    }
+                }
+            }
+        }
+    }
+}

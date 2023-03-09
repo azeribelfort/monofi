@@ -1,0 +1,123 @@
+.community-container {
+    flex: 1;
+    background-color: black;
+    border-radius: 18px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    h3{
+        text-align: center;
+        font-size: 24px;
+        font-weight: 700;
+        padding: 25px 0;
+    }
+
+    .community-tabs-con{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border: 2px solid #878787;
+        border-radius: 8px;
+        width: 185px;
+
+        .community-tabs{
+            flex: 1;
+            background: none;
+            color: white;
+            font-size: 14px;
+            font-weight: 600;
+            margin: 1px;
+            border-radius: 6px;
+            padding: 6px 0;
+            transition: .3s;
+        }
+
+        .active{
+            background-color: #737373;
+        }
+    }
+
+    .comments-con{
+        display: flex;
+        flex-direction: column;
+        margin: 15px 0;
+
+        .comment{
+            border: 2px solid #878787;
+            padding: 10px;
+
+            .comment-top{
+                display: flex;
+                align-items: center;
+
+                .user-avatar{
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 50%;
+                    background-color: #737373;
+                }
+
+                .user-name{
+                    font-size: 14px;
+                    font-weight: 900;
+                    padding-left: 16px;
+                }
+
+                .unique-user-name{
+                    font-size: 12px;
+                    font-weight: 400;
+                    color: #737373;
+                    padding: 0 10px;
+                }
+
+                #dot-span{
+                    width: 4px;
+                    height: 4px;
+                    border-radius: 50%;
+                    background-color: #737373;
+                    margin-right: 10px;
+                }
+
+                .post-time{
+                    color: #737373;
+                    font-size: 12px;
+                }
+            }
+
+            .comment-text{
+                font-size: 15px;
+                padding-top: 15px;
+            }
+
+            .comment-bottom{
+                display: flex;
+                justify-content: center;
+                align-items: flex-start;
+                gap: 15px;
+
+                .comment-data{
+                    display: flex;
+                    align-items: center;
+
+                    .comment-data-btns{
+                        background: none;
+                    }
+
+                    .comment-value{
+                        font-size: 13px;
+                    }
+                }
+            }
+        }
+    }
+
+    #see-more-btn{
+        text-align: center;
+        background: none;
+        color: white;
+        font-size: 16px;
+        font-weight: 700;
+        margin-bottom: 15px;
+    }
+}

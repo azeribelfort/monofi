@@ -1,7 +1,7 @@
 import Slider from "./components/Slider";
 import Spotlight from "./components/Spotlight";
 
-const Layout = () => {
+const Main = () => {
   return (
     <div className='layout-container'>
       <h1 className='layout-title'>Marketplace</h1>
@@ -24,4 +24,4 @@ const Layout = () => {
   )
 };
 
-export default Layout;
+export default Main;
