@@ -1,6 +1,8 @@
 import { Balance } from "./Balance";
 import { Recents } from "./Recents";
-import {News} from './News'
+import { News } from './News'
+import Statistics from "./Statistics";
+import Shares from "./Shares";
 
 const Dashboard = () => {
     const data = {name : 'Azer'}
@@ -12,12 +14,12 @@ const Dashboard = () => {
           </span>
           <div className="AllData">
         <div className="graphs">
-          <div className="Shares">
-
+          <div className="Statistics">
+            <Statistics/>
 
           </div>
-          <div className="Detailed">
-            
+          <div className="Shares">
+            <Shares/>
           </div>
           
         </div>

@@ -14,7 +14,23 @@ export default function Home() {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+<<<<<<< HEAD
       <Landing />
+=======
+      <Header />
+      <main className="container mw-100 mx-5">
+        <div className="row">
+          <div className="col-2">
+            <Sidebar />
+          </div>
+          <div className="col-9">
+            {/* <Layout /> */}
+            <Dashboard />
+
+          </div>
+        </div>
+      </main>
+>>>>>>> 1f61e4cfbf38fc1a09a0c2a524d0116bce3ba7c0
     </>
   );
 }

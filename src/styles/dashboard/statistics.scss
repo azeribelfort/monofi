@@ -1,0 +1,50 @@
+.statisticsContainer {
+    box-shadow: 0px 4px 4px rgba(255, 255, 255, 0.5);
+    border-radius: 35px;
+    // width: 904px;
+    height: 190px;
+    background-color: black;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    *{
+        font-family: Archivo;
+    }
+    .Header {
+        font-weight: 100;
+        font-size: 24px;
+    }   
+    .Values {
+        width: 100%;
+        display: flex;
+        gap: 20px;
+        justify-content: space-around;
+        .valueBox {
+            background: #000000;
+            box-shadow: 0px 4px 4px rgba(255, 255, 255, 0.5);
+            border-radius: 35px;
+            // width: 257.18px;
+            width: 100%;
+            height: 98.9px;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            flex-direction: column;
+            padding: 20px;
+            .name {
+                font-size: 14px; 
+                font-weight: 100;
+                
+            }
+            .value {
+                font-size: 36px;
+                font-weight: 700;    
+            }
+
+
+        }
+
+    }
+
+    
+}
