@@ -31,6 +31,7 @@
             border-radius: 6px;
             padding: 6px 0;
             transition: .3s;
+            border: none;
         }
 
         .active{
@@ -102,6 +103,7 @@
 
                     .comment-data-btns{
                         background: none;
+                        border: none;
                     }
 
                     .comment-value{
@@ -119,5 +121,6 @@
         font-size: 16px;
         font-weight: 700;
         margin-bottom: 15px;
+        border: none;
     }
 }

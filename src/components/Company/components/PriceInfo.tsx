@@ -1,5 +1,4 @@
 import Image from "next/image"
-import Apple from '../../../assets/companies/apple.png'
 import StarFav from '../../../assets/main/star-yellow.png'
 
 interface props{
@@ -22,26 +21,26 @@ const PriceInfo = ({ item }: props) => {
       <div className="top-container">
           <div className="top-left">
               <div className="company-img">
-                  <Image src={item.imgSrc} alt="company" />
+                <Image src={item.imgSrc} alt="company" />
               </div>
               <div className="info-container">
                   <div className="info-top">
-                      <h3>{item.name}</h3>
-                      <span>{item.abbrv}</span>
-                      <button className="info-btns"><Image src={StarFav} alt="btn" /></button>
-                      <button className="info-btns"><Image src={StarFav} alt="btn" /></button>
-                      <button className="info-btns"><Image src={StarFav} alt="btn" /></button>
+                    <h3>{item.name}</h3>
+                    <span>{item.abbrv}</span>
+                    <button className="info-btns"><Image src={StarFav} alt="btn" /></button>
+                    <button className="info-btns"><Image src={StarFav} alt="btn" /></button>
+                    <button className="info-btns"><Image src={StarFav} alt="btn" /></button>
                   </div>
                   <div className="info-select">
-                      <div className="select">
-                          <select id="standard-select">
-                              <option value="Option 1">Option 1</option>
-                              <option value="Option 2">Option 2</option>
-                              <option value="Option 3">Option 3</option>
-                              <option value="Option 4">Option 4</option>
-                              <option value="Option 5">Option 5</option>
-                          </select>
-                      </div>
+                    <div className="select">
+                        <select id="standard-select">
+                            <option value="Option 1">05th-12th Feb</option>
+                            <option value="Option 2">05th-12th Feb</option>
+                            <option value="Option 3">05th-12th Feb</option>
+                            <option value="Option 4">05th-12th Feb</option>
+                            <option value="Option 5">05th-12th Feb</option>
+                        </select>
+                    </div>
                   </div>
                   <div className="info-bottom">
                       <div>

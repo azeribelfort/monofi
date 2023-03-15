@@ -19,7 +19,7 @@ const Center = ({ companyId }: props) => {
     <div className="center-container">
       {mockCompanies.map(item =>
         companyId === item.id.toString() && (
-          <div className="center-wrapper">
+          <div key={item.id} className="center-wrapper">
             <PriceInfo item={item} />
 
             <PriceChart item={item} />

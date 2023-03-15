@@ -67,7 +67,7 @@
 
                 select {
                     appearance: none;
-                    background-color: transparent;
+                    background-color: #4D4D4D;
                     border: none;
                     padding: .3rem .4rem;
                     margin: 0;
@@ -106,21 +106,13 @@
 
                     &::after {
                         content: "";
-                        justify-self: end;
+                        justify-self: flex-end;
                         width: 0.8em;
                         height: 0.5em;
                         background-color: white;
                         clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+                        z-index: 1;
                     }
-
-                    // &::before{
-                    //     content: "";
-                    //     justify-self: start;
-                    //     width: 0.8em;
-                    //     height: 0.5em;
-                    //     background-color: white;
-                    //     clip-path: polygon(100% 0%, 0 0%, 50% 100%);
-                    // }
                 }
             }
 

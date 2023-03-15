@@ -1,9 +1,7 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { ResponsiveContainer, Area, XAxis, YAxis, AreaChart, Tooltip, CartesianGrid } from "recharts";
-import { convertUnixTimestampToDate, convertDateToUnixTimestamp, createDate } from '../../../helpers/date-helper'
-import { chartConfig } from '../../../constants/config'
 import ChartFilter from "./ChartFilter";
-import { mockHistoricalData } from '../../../constants/mock';
+import axios from "axios";
 
 interface props {
   item: {
@@ -20,26 +18,51 @@ interface props {
   }
 };
 
+const chartConfig = ['1h', '1d', '1wk', '1mo', '3mo'];
+
 const PriceChart = ({ item }: props) => {
 
-  const [data, setData] = useState(mockHistoricalData);
-  const [filter, setFilter] = useState("1W");
+  const [data, setData] = useState({});
+  const [filter, setFilter] = useState("1d");
 
-  const formatData = (data) => {
-    return data.c.map((item, index) => {
-      return {
-        value: item.toFixed(2),
-        date: convertUnixTimestampToDate(data.t[index]),
+  useEffect(() => {
+
+    const fetchHistoricalData = async () => {
+
+      const options = {
+        method: 'GET',
+        url: `https://yahoo-finance15.p.rapidapi.com/api/yahoo/hi/history/AAPL/${filter}`,
+        headers: {
+          'X-RapidAPI-Key': process.env.NEXT_PUBLIC_API_KEY,
+          'X-RapidAPI-Host': 'yahoo-finance15.p.rapidapi.com'
+        }
       };
-    });
-  };
 
+      try {
+        const response = await axios.request(options);
+
+        setData(Object.values(response.data.items).map((item) => {
+          return {
+            value: item.open,
+            date: item.date,
+          };
+        }));
+
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    fetchHistoricalData();
+  }, [filter])
+
+  console.log(data);
   return (
     <div className="middle-container">
       <span className="chart-title">{item.name} Price over Time</span>
 
       <ul className="chart-filter-links">
-        {Object.keys(chartConfig).map((item) => (
+        {chartConfig.map((item) => (
           <li className="chart-filter-link" key={item}>
             <ChartFilter text={item} active={filter === item} onClick={() => setFilter(item)} />
           </li>
@@ -48,7 +71,7 @@ const PriceChart = ({ item }: props) => {
       
       <div className="chart-container">
         <ResponsiveContainer>
-          <AreaChart data={formatData(data)}>
+          <AreaChart data={data}>
             <defs>
               <linearGradient id="chartColor" x1="0" y1="0" x2="0" y2="1">
                 <stop offset="5%" stopColor="#8884d8" stopOpacity={0.8} />
@@ -65,7 +88,7 @@ const PriceChart = ({ item }: props) => {
             />
             <Tooltip />
             <XAxis dataKey={"date"} />
-            <YAxis domain={["dataMin", "dataMax"]} />
+            <YAxis orientation="right" domain={["dataMin", "dataMax"]} />
             <CartesianGrid strokeDasharray="3 3" />
           </AreaChart>
         </ResponsiveContainer>
