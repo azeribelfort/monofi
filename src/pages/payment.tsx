@@ -63,7 +63,7 @@ function Payment () {
           <div className="countdown">
             <Countdown/>
           </div>
-          <div className="card-infos">
+          <form className="card-infos">
             <div className="card-number">
               <h3>Card Number</h3>
               <p>Enter the 16-digit number in front of your card</p>
@@ -117,8 +117,8 @@ function Payment () {
                 <MdDialpad className="dial"/>
               </div>
             </div>
-            <button>Pay Now</button>
-          </div>
+            <button type="submit" onClick={(e)=>e.preventDefault()}>Pay Now</button>
+          </form>
         </section>
         <section className="Billing">
           <div className="Order">

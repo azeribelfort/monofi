@@ -10,6 +10,8 @@ import '../styles/layoutForAuthorization/Signin.scss'
 import '../styles/layoutForAuthorization/Signup.scss'
 import '../styles/layoutForAuthorization/authorization.scss'
 import '../styles/Payment/Payment.scss'
+import '../styles/Payment/Success.scss'
+import '../styles/Payment/Failure.scss'
 import type { AppProps } from 'next/app';
 
 export default function App({ Component, pageProps }: AppProps) {
