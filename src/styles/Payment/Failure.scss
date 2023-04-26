@@ -1,0 +1,63 @@
+.failure-box{
+    width: 1340px;
+    height: 754px;
+    display: flex;
+    border: 1px  #7000FF;
+    border-style: solid;
+    padding: 30px 68px;
+    border-radius: 30px;
+    background-color: #000;
+
+    .Card{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+
+        .head{
+            display: flex;
+            align-items: center;
+            width: 100%;
+
+            .logo{
+                margin-right: 23px;
+                justify-content: center;
+                align-items: center;
+                font-size: 35px;
+                padding: 6px 25px;
+                border-radius: 18px;
+                background-color: #7000FF;
+            }
+
+            h3{
+                span{
+                    opacity: 0.4;
+                }
+            }
+        }
+
+        .message{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            width: 100%;
+            height: 100%;
+            color: red;
+            font-family: Archivo;
+
+            .fail-close{
+                font-size: 250px;
+            }
+
+            .mx1{
+                font-weight: 700;
+                font-size: 40px;
+            }
+
+            .mx2{
+                font-size: 20px;
+            }
+        }
+    }
+
+}

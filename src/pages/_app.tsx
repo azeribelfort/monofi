@@ -14,6 +14,8 @@ import '../styles/individualCompany/priceInfo.scss'
 import '../styles/individualCompany/community.scss'
 import '../styles/individualCompany/priceChart.scss'
 import '../styles/Payment/Payment.scss'
+import '../styles/Payment/Success.scss'
+import '../styles/Payment/Failure.scss'
 import type { AppProps } from 'next/app';
 
 export default function App({ Component, pageProps }: AppProps) {
